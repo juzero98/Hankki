@@ -14,7 +14,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val db = FirebaseFirestore.getInstance()
-
         val loginBtn = findViewById<Button>(R.id.loginBtn)
         loginBtn.setOnClickListener{
             db.collection("users")

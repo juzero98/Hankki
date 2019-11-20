@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".LoginActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".JoinActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SelectActivity" android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
