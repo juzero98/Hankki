@@ -16,7 +16,7 @@
         android:id="@+id/userPw"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="PW"
+        android:hint="1234"
         android:layout_below="@+id/userId"
         android:layout_gravity="center"/>
 
