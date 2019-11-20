@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
-    <EditText
-        android:layout_width="match_parent"
+<TableLayout
+    android:id="@+id/tableLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="로그인 성공!"/>
+        android:layout_weight="0.3">
+        <Button
+            android:id="@+id/menuBtn"
+            android:text="메뉴"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:background="@color/colorMenuBtn"/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/communityBtn"
+            android:text="커뮤니티"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:background="@color/colorCommunityBtn"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3">
+        <Button
+            android:id="@+id/scoreBtn"
+            android:text="평점"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:background="@color/colorScoreBtn"/>
+
+        <Button
+            android:id="@+id/myPageBtn"
+            android:text="MyPage"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:background="@color/colorMyPageBtn"/>
+    </TableRow>
+
+</TableLayout>
+
+</RelativeLayout>

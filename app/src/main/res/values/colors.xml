@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorApp">#FF7373</color>
+    <color name="colorMenuBtn">#ffa788</color>
+    <color name="colorCommunityBtn">#ffb9b9</color>
+    <color name="colorScoreBtn">#cc5c5c</color>
+    <color name="colorMyPageBtn">#cfb4c1</color>
 </resources>
