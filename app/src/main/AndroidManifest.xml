@@ -25,6 +25,9 @@
         <activity android:name=".MenuActivity" android:parentActivityName = ".SelectActivity"/>
 
         <activity android:name=".CommunityActivity" android:parentActivityName = ".SelectActivity"/>
+
+        <activity android:name=".MyPageActivity" android:parentActivityName = ".SelectActivity"/>
+
     </application>
 
 </manifest>

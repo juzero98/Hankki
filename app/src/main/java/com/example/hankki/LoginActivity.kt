@@ -15,15 +15,26 @@ class LoginActivity : AppCompatActivity() {
 
         val db = FirebaseFirestore.getInstance()
         val loginBtn = findViewById<Button>(R.id.loginBtn)
-        loginBtn.setOnClickListener{
+
+        loginBtn.setOnClickListener {
+            val userId1 = userId.text.toString()
+            val userPw1 = userPw.text.toString()
             db.collection("users")
-                .whereEqualTo("id", userId.text.toString())
-                .whereEqualTo("pw", userPw.text.toString())
+                .whereEqualTo("id", userId1)
+                .whereEqualTo("pw", userPw1)
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
+
+                        val id = document.get("id").toString()
                         val intent = Intent(this, SelectActivity::class.java)
+
+                        intent.putExtra("id", id)
+
                         startActivity(intent)
+                        //startActivity(intent1)
+                        //  val intent = Intent(this, SelectActivity::class.java)
+                        //  startActivity(intent)
                     }
                 }
 

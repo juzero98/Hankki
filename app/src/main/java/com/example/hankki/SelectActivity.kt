@@ -11,6 +11,8 @@ class SelectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select)
 
+        val id = intent.getStringExtra("id")
+
         menuBtn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
@@ -19,6 +21,14 @@ class SelectActivity : AppCompatActivity() {
         communityBtn.setOnClickListener{
             val intent = Intent(this, CommunityActivity::class.java)
             startActivity(intent)
+        }
+
+        myPageBtn.setOnClickListener{
+
+            val intent1 = Intent(this, MyPageActivity::class.java)
+
+            intent1.putExtra("id", id)
+            startActivity(intent1)
         }
 
 
