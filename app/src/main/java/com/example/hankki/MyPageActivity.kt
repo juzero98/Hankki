@@ -23,7 +23,7 @@ class MyPageActivity : AppCompatActivity() {
 
     // 로그인 한 사용자 이름, 잔액 표시
     fun upload() {
-        val userId = "123"
+        val userId = intent.getStringExtra("id")
         db.collection("users")
             .whereEqualTo("id", userId)
             .get()
