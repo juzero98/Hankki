@@ -11,11 +11,10 @@ class CommunityActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
 
-        setSupportActionBar(toolbar)
 
         val adapter = MyPagerAdapter(supportFragmentManager)
         adapter.addFragment(CommunityFirstFragment(), "건의사항")
-        adapter.addFragment(CommunitySecondFragment(), "학식정보")
+        adapter.addFragment(CommunitySecondFragment(), "학식당 정보")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
     }
