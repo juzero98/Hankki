@@ -15,6 +15,13 @@ class SelectActivity : AppCompatActivity() {
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
+
+        communityBtn.setOnClickListener{
+            val intent = Intent(this, CommunityActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
 
