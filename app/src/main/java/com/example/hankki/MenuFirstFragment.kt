@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_menu_firstfragment.view.*
 class MenuFirstFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val menuData = ArrayList<Menu>()
-    private var loadSucess  = false
+    private var readSucess  = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_menu_firstfragment, container, false)!!
         read()
@@ -32,12 +32,12 @@ class MenuFirstFragment : Fragment() {
                     val img = document.get("img").toString()
                     val name = document.get("name").toString()
                     val price = document.get("price").toString()
-                    menuData.add(Menu(img, name, Integer.parseInt(price)))
+                    if (!readSucess) {
+                        menuData.add(Menu(img, name, Integer.parseInt(price)))
+                    }
                 }
-                if(!loadSucess) {
-                    upload()
-                    loadSucess = true
-                }
+                upload()
+                readSucess = true
 
             }
             .addOnFailureListener { exception ->

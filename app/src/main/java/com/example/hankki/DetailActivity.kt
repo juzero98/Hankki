@@ -25,10 +25,26 @@ class DetailActivity : AppCompatActivity() {
         nameView.text = name
 
         val price = intent.extras!!.getString("price")
-        priceView.text = price.toString()
+        priceView.text = (price.toString() + "원")
 
         val category = intent.extras!!.getString("category")
         categoryView.text = category
+
+        val orderNumView = orderNum
+        val plusButton = plusBtn
+        val minusButton = minusBtn
+
+        var number = 1
+        plusButton.setOnClickListener {
+            number =Integer.parseInt(orderNumView.text.toString())
+            if(number > 0)
+                orderNumView.text = (number + 1).toString()
+        }
+        minusButton.setOnClickListener {
+            number =Integer.parseInt(orderNumView.text.toString())
+            if(number > 1)
+            orderNumView.text = (number - 1).toString()
+        }
 
     }
 }

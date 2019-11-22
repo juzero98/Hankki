@@ -15,8 +15,12 @@ import kotlinx.android.synthetic.main.fragment_menu_thirdfragment.*
 class MenuThirdFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val menuData = ArrayList<Menu>()
-    private var loadSucess  = false
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private var readSucess = false
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_menu_firstfragment, container, false)!!
         read()
         return view
@@ -31,28 +35,30 @@ class MenuThirdFragment : Fragment() {
                     val img = document.get("img").toString()
                     val name = document.get("name").toString()
                     val price = document.get("price").toString()
-                    menuData.add(Menu(img, name, Integer.parseInt(price)))
+                    if (!readSucess) {
+                        menuData.add(Menu(img, name, Integer.parseInt(price)))
+                    }
                 }
-                if(!loadSucess) {
-                    upload()
-                    loadSucess = true
-                }
+                upload()
+                readSucess = true
+
 
             }
             .addOnFailureListener { exception ->
                 Log.w("", "Error getting documents: ", exception)
             }
     }
+
     private fun upload() {
         val mGrid = grid
         val mAdapter = MenuAdapter(this.activity, menuData)
         mGrid.adapter = mAdapter
-        mGrid.setOnItemClickListener{ parent, view, position, id ->
+        mGrid.setOnItemClickListener { parent, view, position, id ->
             showDetail(menuData[position].name)
         }
     }
 
-    private fun showDetail(name : String?) {
+    private fun showDetail(name: String?) {
         db.collection("menu")
             .whereEqualTo("name", name)
             .get()
@@ -72,6 +78,7 @@ class MenuThirdFragment : Fragment() {
                 Log.w("", "Error getting documents: ", exception)
             }
     }
+
     interface OnMyListener {
         fun onReceivedData(data: Any)
     }
