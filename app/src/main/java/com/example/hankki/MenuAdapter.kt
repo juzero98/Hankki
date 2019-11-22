@@ -44,8 +44,8 @@ class MenuAdapter constructor(_ctx : Context?, _data : ArrayList<Menu>) : BaseAd
             .load(m.img)
             .into(image)
 
-        name.setText(m.name)
-        price.setText(m.price.toString() + "원")
+        name.text = m.name
+        price.text = m.price.toString() + "원"
 
         return view
     }
