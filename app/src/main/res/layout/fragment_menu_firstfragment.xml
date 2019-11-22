@@ -3,8 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="면류/찌개/김밥" />
+
+    <GridView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="555dp"
+        android:columnWidth="200dp"
+        android:gravity="center"
+        android:horizontalSpacing="4dp"
+        android:numColumns="2"
+        android:padding="2dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="2dp"></GridView>
 </LinearLayout>
