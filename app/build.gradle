@@ -39,6 +39,11 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'com.google.firebase:firebase-core:17.0.0'
 
+    // Image URL로 받아 넣어주는 Glide 프레임 워크
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // Tab Layout
     implementation 'com.google.android.material:material:1.0.0'
 
 
