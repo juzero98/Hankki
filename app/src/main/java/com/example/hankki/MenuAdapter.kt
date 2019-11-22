@@ -29,8 +29,8 @@ class MenuAdapter constructor(_ctx : Context, _data : ArrayList<Menu>) : BaseAda
     }
 
     override fun getView(position: Int, convertView: View, parent: ViewGroup?): View {
-        //var view = convertView
-        /*if (view == null) {
+        var view = convertView
+        if (view == null) {
             val inflater = LayoutInflater.from(ctx)
             view = inflater.inflate(R.layout.list_menu, parent, false)
         }
@@ -45,8 +45,8 @@ class MenuAdapter constructor(_ctx : Context, _data : ArrayList<Menu>) : BaseAda
 
         name.text = m.name
         price.text = m.price.toString()
-        */
-        return convertView
+
+        return view
     }
 
 
