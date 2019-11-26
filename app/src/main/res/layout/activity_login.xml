@@ -8,7 +8,7 @@
         android:id="@+id/userId"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="1234567"
+        android:hint="id"
         android:layout_marginTop="250dp"
         android:layout_gravity="center"/>
 
@@ -16,7 +16,7 @@
         android:id="@+id/userPw"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="1234"
+        android:hint="pw"
         android:layout_below="@+id/userId"
         android:layout_gravity="center"/>
 
