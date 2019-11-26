@@ -12,6 +12,7 @@ class SelectActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select)
 
         val id = intent.getStringExtra("id")
+        val cash = intent.getStringExtra("cash")
 
         menuBtn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
