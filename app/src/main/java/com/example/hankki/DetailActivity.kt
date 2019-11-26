@@ -10,41 +10,44 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val imageView = img
-        val nameView = name
-        val priceView = price
-        val categoryView = category
-
         val intent = intent
         val img = intent.extras!!.getString("img")
         Glide.with(this)
             .load(img)
-            .into(imageView)
+            .into(imgView)
 
-        val name = intent.extras!!.getString("name")
+        val name = intent.extras!!.getString("name").toString()
         nameView.text = name
 
-        val price = intent.extras!!.getString("price")
-        priceView.text = (price.toString() + "원")
+        val price = intent.extras!!.getString("price").toString()
+        priceView.text = (price + "원")
+        totalPriceView.text = price
 
-        val category = intent.extras!!.getString("category")
-        categoryView.text = category
+        // 총 주문 수량
+        var amount = 1
 
-        val orderNumView = orderNum
-        val plusButton = plusBtn
-        val minusButton = minusBtn
+        // 총 금액
+        var totalPrice  = Integer.parseInt(price)
 
-        var number = 1
-        plusButton.setOnClickListener {
-            number =Integer.parseInt(orderNumView.text.toString())
-            if(number > 0)
-                orderNumView.text = (number + 1).toString()
+
+        // 수량 +/- 버튼 (총 주문 수량 변경 및 총 금액 변경)
+        plusBtn.setOnClickListener {
+            amount = Integer.parseInt(amountView.text.toString())
+            if(amount > 0) {
+                amount += 1
+                amountView.text = amount.toString()
+            }
+            totalPrice = Integer.parseInt(price) * amount
+            totalPriceView.text = totalPrice.toString()
         }
-        minusButton.setOnClickListener {
-            number =Integer.parseInt(orderNumView.text.toString())
-            if(number > 1)
-            orderNumView.text = (number - 1).toString()
+        minusBtn.setOnClickListener {
+            amount =Integer.parseInt(amountView.text.toString())
+            if(amount > 1) {
+                amount -= 1
+                amountView.text = amount.toString()
+            }
+            totalPrice = Integer.parseInt(price) * amount
+            totalPriceView.text = totalPrice.toString()
         }
-
     }
 }
