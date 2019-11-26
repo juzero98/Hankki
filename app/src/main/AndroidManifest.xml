@@ -30,6 +30,12 @@
 
         <activity android:name=".DetailActivity" android:parentActivityName = ".MenuActivity"/>
 
+        <activity android:name=".RatingActivity"/>
+
+        <activity android:name=".SeeReviewActivity"/>
+
+        <activity android:name=".GiveReviewActivity"/>
+
     </application>
 
 </manifest>

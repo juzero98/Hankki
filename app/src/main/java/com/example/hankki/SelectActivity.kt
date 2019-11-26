@@ -23,6 +23,12 @@ class SelectActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        scoreBtn.setOnClickListener{
+            val intent1 = Intent(this, RatingActivity::class.java)
+            intent1.putExtra("id", id)
+            startActivity(intent1)
+        }
+
         myPageBtn.setOnClickListener{
 
             val intent1 = Intent(this, MyPageActivity::class.java)
