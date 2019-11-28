@@ -25,16 +25,10 @@
         <activity android:name=".MenuActivity" android:parentActivityName = ".SelectActivity"/>
 
         <activity android:name=".CommunityActivity" android:parentActivityName = ".SelectActivity"/>
+        <activity android:name=".WriteActivity" android:parentActivityName = ".CommunityActivity"/>
+        <activity android:name=".ShowActivity" android:parentActivityName = ".CommunityActivity"/>
 
         <activity android:name=".MyPageActivity" android:parentActivityName = ".SelectActivity"/>
-
-        <activity android:name=".DetailActivity" android:parentActivityName = ".MenuActivity"/>
-
-        <activity android:name=".RatingActivity"/>
-
-        <activity android:name=".SeeReviewActivity"/>
-
-        <activity android:name=".GiveReviewActivity"/>
 
     </application>
 
