@@ -25,7 +25,7 @@ class MenuActivity  : AppCompatActivity(), MenuFirstFragment.OnMyListener, MenuS
 
     override fun onReceivedData(data: Any) {
         val intent = Intent(this, DetailActivity::class.java)
-        val datas = data        as Array<String>
+        val datas = data as Array<String>
         intent.putExtra("img", datas[0])
         intent.putExtra("name", datas[1])
         intent.putExtra("price", datas[2])

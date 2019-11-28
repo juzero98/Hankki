@@ -12,6 +12,7 @@ class SelectActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select)
 
         val id = intent.getStringExtra("id")
+        val cash = intent.getStringExtra("cash")
 
         menuBtn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
@@ -20,8 +21,13 @@ class SelectActivity : AppCompatActivity() {
 
         communityBtn.setOnClickListener{
             val intent = Intent(this, CommunityActivity::class.java)
-            intent.putExtra("id", id)
             startActivity(intent)
+        }
+
+        scoreBtn.setOnClickListener{
+            val intent1 = Intent(this, RatingActivity::class.java)
+            intent1.putExtra("id", id)
+            startActivity(intent1)
         }
 
         myPageBtn.setOnClickListener{
@@ -34,8 +40,6 @@ class SelectActivity : AppCompatActivity() {
 
 
     }
-
-
 
 
 
