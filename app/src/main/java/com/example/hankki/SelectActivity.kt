@@ -11,7 +11,7 @@ class SelectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select)
 
-        val id = intent.getStringExtra("id")
+        //val id = intent.getStringExtra("id")
 
         menuBtn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
@@ -27,7 +27,7 @@ class SelectActivity : AppCompatActivity() {
 
             val intent1 = Intent(this, MyPageActivity::class.java)
 
-            intent1.putExtra("id", id)
+            //intent1.putExtra("id", id)
             startActivity(intent1)
         }
 
