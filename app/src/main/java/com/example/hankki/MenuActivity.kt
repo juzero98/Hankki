@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
+import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.activity_mypage.*
 
 class MenuActivity  : AppCompatActivity(), MenuFirstFragment.OnMyListener, MenuSecondFragment.OnMyListener, MenuThirdFragment.OnMyListener  {

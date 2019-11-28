@@ -31,7 +31,6 @@
         <activity android:name=".DetailActivity" android:parentActivityName = ".MenuActivity"/>
 
         <activity android:name=".CartActivity" android:parentActivityName = ".DetailActivity"/>
-        <activity android:name=".OrderActivity" android:parentActivityName = ".DetailActivity"/>
 
     </application>
 

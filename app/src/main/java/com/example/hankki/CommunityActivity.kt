@@ -1,23 +1,27 @@
 package com.example.hankki
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_community.*
 
-
-class CommunityActivity : AppCompatActivity()  {
-
+class CommunityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
 
+        val id = intent.getStringExtra("id")
 
-        val adapter = MyPagerAdapter(supportFragmentManager)
-        adapter.addFragment(CommunityFirstFragment(), "건의사항")
-        adapter.addFragment(CommunitySecondFragment(), "학식당 정보")
-        viewPager.adapter = adapter
-        tabs.setupWithViewPager(viewPager)
+
+        writeBtn.setOnClickListener{
+            val intent = Intent(this, WriteActivity::class.java)
+            intent.putExtra("id", id)
+            startActivity(intent)
+        }
+
+        showBtn.setOnClickListener{
+            val intent = Intent(this, ShowActivity::class.java)
+            startActivity(intent)
+        }
     }
-
-
 }

@@ -11,7 +11,8 @@ class SelectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select)
 
-        //val id = intent.getStringExtra("id")
+        val id = intent.getStringExtra("id")
+        val cash = intent.getStringExtra("cash")
 
         menuBtn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
@@ -23,11 +24,17 @@ class SelectActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        scoreBtn.setOnClickListener{
+            val intent1 = Intent(this, RatingActivity::class.java)
+            intent1.putExtra("id", id)
+            startActivity(intent1)
+        }
+
         myPageBtn.setOnClickListener{
 
             val intent1 = Intent(this, MyPageActivity::class.java)
 
-            //intent1.putExtra("id", id)
+            intent1.putExtra("id", id)
             startActivity(intent1)
         }
 
