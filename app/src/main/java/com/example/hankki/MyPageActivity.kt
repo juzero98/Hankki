@@ -45,6 +45,7 @@ class MyPageActivity : AppCompatActivity() {
                         .document(userId)
                         .update("cash", FieldValue.increment(1000))
 
+                    readUser(userId)
                     Toast.makeText(
                         applicationContext,
                         "충전이 완료되었습니다.",
@@ -58,14 +59,10 @@ class MyPageActivity : AppCompatActivity() {
                     ).show()
 
             }
-            readUser(userId)
+
             builder.show()
 
-
-
-
         }
-
 
     }
 
@@ -86,6 +83,7 @@ class MyPageActivity : AppCompatActivity() {
                 Log.w("", "Error getting documents: ", exception)
             }
     }
+
     fun readReview() {
         val userId = intent.getStringExtra("id")
         db.collection("reviews")
@@ -98,7 +96,7 @@ class MyPageActivity : AppCompatActivity() {
                     val menu = document.get("menu").toString()
                     if (!readSucess) {
                         reviewData.add(MyPage(menu, star.toFloat(), review))
-                }
+                    }
                 }
                 upload()
                 readSucess = true
