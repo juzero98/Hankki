@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.list.view.*
 class MyAdapter : BaseAdapter {
     private val ctx: Context?
     private val data: ArrayList<MyPage>
+//    private val data2: ArrayList<ReviewImg>
 
     constructor(_ctx: Context?, _data: ArrayList<MyPage>) {
         ctx = _ctx
@@ -42,13 +43,14 @@ class MyAdapter : BaseAdapter {
         val menu = view.menu
         val star = view.star
         val review = view.review
-        val image = view.img
+//        val image = view.img
 
         val m = data[position]
+//        val m2 = data2[position]
 
-        Glide.with(view)
-            .load(m.img)
-            .into(image)
+//        Glide.with(view)
+//            .load(m2.img)
+//            .into(image)
 
         menu.text = m.menu
         review.text = m.review
