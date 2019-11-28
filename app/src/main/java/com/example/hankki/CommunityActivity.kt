@@ -3,7 +3,11 @@ package com.example.hankki
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
+
+
+
 
 class CommunityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,6 +15,7 @@ class CommunityActivity : AppCompatActivity() {
         setContentView(R.layout.activity_community)
 
         val id = intent.getStringExtra("id")
+        val db = FirebaseFirestore.getInstance()
 
 
         writeBtn.setOnClickListener{
@@ -23,5 +28,9 @@ class CommunityActivity : AppCompatActivity() {
             val intent = Intent(this, ShowActivity::class.java)
             startActivity(intent)
         }
+
+
+
+
     }
 }
