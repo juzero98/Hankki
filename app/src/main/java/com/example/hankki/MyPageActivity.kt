@@ -93,13 +93,12 @@ class MyPageActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    val img = document.get("img").toString()
                     val star = document.get("star").toString()
                     val review = document.get("review").toString()
                     val menu = document.get("menu").toString()
                     if (!readSucess) {
-                        reviewData.add(MyPage(menu, star.toFloat(), review, img))
-                    }
+                        reviewData.add(MyPage(menu, star.toFloat(), review))
+                }
                 }
                 upload()
                 readSucess = true
@@ -109,6 +108,7 @@ class MyPageActivity : AppCompatActivity() {
                 Log.w("", "Error getting documents: ", exception)
             }
     }
+
 
     fun upload() {
         val mGrid = grid
