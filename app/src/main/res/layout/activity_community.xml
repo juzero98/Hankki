@@ -46,7 +46,7 @@
             android:gravity="center"
             android:horizontalSpacing="4dp"
             android:numColumns="1"
-            android:padding="2dp"
+            android:padding="6dp"
             android:stretchMode="columnWidth"
             android:verticalSpacing="4dp"/>
 
