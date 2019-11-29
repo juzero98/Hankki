@@ -11,7 +11,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="24dp"
-        android:text="비밀번호 입력"
+        android:text="한줄평"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -24,20 +24,22 @@
         android:layout_marginTop="24dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:text="충전을 위해 비밀번호를 입력해주세요"
+        android:text="사용자들의 한줄평입니다. 참고하세요!"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/dialogEt"
+    <GridView
+        android:id="@+id/grid"
         android:layout_width="match_parent"
-        android:layout_height="676dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="숫자를 입력해주세요"
-        android:inputType="numberPassword" />
+        android:layout_height="555dp"
+        android:columnWidth="200dp"
+        android:gravity="center"
+        android:horizontalSpacing="4dp"
+        android:numColumns="1"
+        android:padding="2dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="2dp"></GridView>
 
 
 

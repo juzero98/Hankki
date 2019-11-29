@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.list.view.*
+import kotlinx.android.synthetic.main.list_oneline.view.*
 
-class MyAdapter : BaseAdapter {
+class OneLineAdapter : BaseAdapter {
     private val ctx: Context?
-    private val data: ArrayList<MyPage>
+    private val data: ArrayList<OnelineData>
     private val db = FirebaseFirestore.getInstance()
-//    private val data2: ArrayList<ReviewImg>
 
-    constructor(_ctx: Context?, _data: ArrayList<MyPage>) {
+
+    constructor(_ctx: Context?, _data: ArrayList<OnelineData>) {
         ctx = _ctx
         data = _data
     }
@@ -27,7 +27,7 @@ class MyAdapter : BaseAdapter {
     }
 
     override fun getItemId(position: Int): Long {
-       return position.toLong()
+        return position.toLong()
     }
 
     override fun getItem(position: Int): Any? {
@@ -35,37 +35,33 @@ class MyAdapter : BaseAdapter {
     }
 
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
 
         val inflater = LayoutInflater.from(ctx)
-        view = inflater.inflate(R.layout.list, parent, false)
+        view = inflater.inflate(R.layout.list_oneline, parent, false)
 
-        val menu = view.menu
-        val star = view.star
-        val review = view.review
-        val image = view.img
+        val id = view.oneLineId
+        val review = view.oneLineReview
+        val menuName = view.oneLineMenuName
 
         val m = data[position]
 
-        menu.text = m.menu
+        menuName.text = m.menuname
 
-        db.collection("menu")
-            .whereEqualTo("name", m.menu)
+        db.collection("reviews")
+            .whereEqualTo("menu", m.menuname)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    val imga = document.get("img").toString()
+                    val oneLineId = document.get("id").toString()
+                    val oneLineReview = document.get("review").toString()
 
-                    Glide.with(view)
-                        .load(imga)
-                        .into(image)
+                    id.text = oneLineId
+                    review.text = oneLineReview
 
                 }
 
-                review.text = m.review
-                star.rating = m.star!!
 
             }
         return view
