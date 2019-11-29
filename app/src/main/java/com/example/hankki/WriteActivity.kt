@@ -1,17 +1,22 @@
 package com.example.hankki
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_community.*
 import kotlinx.android.synthetic.main.activity_write.*
 
 class WriteActivity : AppCompatActivity() {
+
+
+    private val db = FirebaseFirestore.getInstance()
+    private val commuData = ArrayList<MyCommunity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write)
 
-        val db = FirebaseFirestore.getInstance()
         val id = intent.getStringExtra("id")
         var num = 1
 
@@ -23,56 +28,55 @@ class WriteActivity : AppCompatActivity() {
             /*db.collection("board").document(randomNum).set(board)*/
             var numString = num.toString()
 
-
             db.collection("board")
                 .get()
                 .addOnSuccessListener { documents ->
-                    for (document in documents) {
+                    for (document in documents ) {
                         val count = document.get("count").toString()
                         val numInt = Integer.parseInt(count)
-
                         if(num == numInt){
-
-                            val writeTitle: String = writeTitle.text.toString()
-                            val writeContent: String = writeContent.text.toString()
-
-                            //document 이름이 numString 인 애가 있다면
                             num++
-                            numString = num.toString()
-                            val board = Board(writeContent, id, writeTitle, num)
-                            db.collection("board").document(numString).set(board)
                         }
-
-/*
-                        else{
-                            val board = Board(writeContent, id, writeTitle, num)
-                            //document 이름이 numString 인 애가 있다면
-                            db.collection("board").document(numString).set(board)
-                        }*/
-                        /* db.collection("board").document(num.toString()).set(board)*/
-                        //board 에 집어넣음
                     }
+
+                    val writeTitle: String = writeTitle.text.toString()
+                    val writeContent: String = writeContent.text.toString()
+
+                    //document 이름이 numString 인 애가 있다면
+                    numString = num.toString()
+                    val board = Board(writeContent, id, writeTitle, num)
+                    db.collection("board").document(numString).set(board)
+
+                    readFirestore()
                 }
-
-
-
-            /*fun getCount(ref: DocumentReference): Task<Int> { //count 필드의 합 가져오기 => document의 개수
-                // Sum the count of each shard in the subcollection
-                return ref.collection("board").get()
-                    .continueWith { task ->
-                        var count = 0
-                        for (snap in task.result!!) {
-                            val shard = snap.toObject(Shard::class.java)
-                            count += shard.count
-                        }
-                        count
-                    }
-            }*/
 
             finish()//신기해
   /*          val intent = Intent(this, CommunityActivity::class.java)
             startActivity(intent)*/
 
         }
+    }
+
+    fun readFirestore(){ //db 읽어와
+        db.collection("board")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents ) {
+                    var title = document.get("title").toString()
+                    var content = document.get("content").toString()
+
+                    commuData.add(MyCommunity(title, content))
+                }
+                upload()
+            }
+            .addOnFailureListener { exception ->
+                Log.w("", "Error getting documents: ", exception)
+            }
+    }
+
+    fun upload(){ //gridview에 upload
+        val mGrid = grid
+        val mAdapter = CommunityAdapter(this, commuData)
+        mGrid.adapter = mAdapter
     }
 }

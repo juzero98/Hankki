@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorCommunityBtn">
+
     <LinearLayout
+        android:background="@color/colorCommunityBtn"
         android:orientation="vertical"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="match_parent"
@@ -40,5 +37,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+
+        <GridView
+            android:id="@+id/grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="64dp"
+            android:gravity="center"
+            android:horizontalSpacing="4dp"
+            android:numColumns="1"
+            android:padding="2dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="4dp"/>
+
     </LinearLayout>
-</ScrollView>
