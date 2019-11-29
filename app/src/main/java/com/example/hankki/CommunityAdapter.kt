@@ -36,12 +36,10 @@ class CommunityAdapter : BaseAdapter {
         view = inflater.inflate(R.layout.community_list, parent, false)
 
         val titleId = view.titleId
-        val contentId = view.contentId
 
         val m = data[position]
 
         titleId.text = m.titleId
-        contentId.text = m.contentId
 
         return view
     }

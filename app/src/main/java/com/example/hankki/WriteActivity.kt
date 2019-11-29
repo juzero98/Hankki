@@ -1,22 +1,31 @@
 package com.example.hankki
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
 import kotlinx.android.synthetic.main.activity_write.*
+import android.app.ListActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class WriteActivity : AppCompatActivity() {
 
 
     private val db = FirebaseFirestore.getInstance()
     private val commuData = ArrayList<MyCommunity>()
+    public var context: Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write)
 
+        context = this
         val id = intent.getStringExtra("id")
         var num = 1
 
@@ -47,17 +56,19 @@ class WriteActivity : AppCompatActivity() {
                     val board = Board(writeContent, id, writeTitle, num)
                     db.collection("board").document(numString).set(board)
 
-                    readFirestore()
+                    /*readFirestore()*/
+
+
+
                 }
 
+
             finish()//신기해
-  /*          val intent = Intent(this, CommunityActivity::class.java)
-            startActivity(intent)*/
 
         }
     }
 
-    fun readFirestore(){ //db 읽어와
+    /*fun readFirestore(){ //db 읽어와
         db.collection("board")
             .get()
             .addOnSuccessListener { documents ->
@@ -67,6 +78,8 @@ class WriteActivity : AppCompatActivity() {
 
                     commuData.add(MyCommunity(title, content))
                 }
+
+                commuData.reverse() //최근글이 위로 가게
                 upload()
             }
             .addOnFailureListener { exception ->
@@ -78,5 +91,5 @@ class WriteActivity : AppCompatActivity() {
         val mGrid = grid
         val mAdapter = CommunityAdapter(this, commuData)
         mGrid.adapter = mAdapter
-    }
+    }*/
 }

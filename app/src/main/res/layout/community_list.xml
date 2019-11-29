@@ -11,11 +11,7 @@
         android:layout_height="wrap_content"
         android:text="글 제목"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginTop="17dp"/>
 
-    <TextView
-        android:id="@+id/contentId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="글 내용"/>
 </LinearLayout>
