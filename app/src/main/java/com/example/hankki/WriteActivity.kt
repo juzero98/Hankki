@@ -12,8 +12,6 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
-
-
 class WriteActivity : AppCompatActivity() {
 
 
@@ -58,38 +56,14 @@ class WriteActivity : AppCompatActivity() {
 
                     /*readFirestore()*/
 
-
-
+                    val community = CommunityActivity()
+                    community.compare = 1
                 }
 
-
             finish()//신기해
+
 
         }
     }
 
-    /*fun readFirestore(){ //db 읽어와
-        db.collection("board")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents ) {
-                    var title = document.get("title").toString()
-                    var content = document.get("content").toString()
-
-                    commuData.add(MyCommunity(title, content))
-                }
-
-                commuData.reverse() //최근글이 위로 가게
-                upload()
-            }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents: ", exception)
-            }
-    }
-
-    fun upload(){ //gridview에 upload
-        val mGrid = grid
-        val mAdapter = CommunityAdapter(this, commuData)
-        mGrid.adapter = mAdapter
-    }*/
 }
