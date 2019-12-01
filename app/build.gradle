@@ -50,6 +50,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
+    // 당겨서 새로고침 SwipeRefreshLayout
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
