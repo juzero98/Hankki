@@ -49,7 +49,7 @@ class MenuFirstFragment : Fragment() {
         val mAdapter = MenuAdapter(this.activity, menuData)
         mGrid.adapter = mAdapter
         mGrid.setOnItemClickListener{ parent, view, position, id ->
-           // showDetail(menuData[position].name)
+           showDetail(menuData[position].name)
         }
     }
 

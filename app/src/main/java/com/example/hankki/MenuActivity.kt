@@ -3,6 +3,8 @@ package com.example.hankki
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
@@ -31,6 +33,23 @@ class MenuActivity  : AppCompatActivity(), MenuFirstFragment.OnMyListener, MenuS
         intent.putExtra("price", datas[2])
         intent.putExtra("category", datas[3])
         startActivity(intent)
+    }
+
+    // 상단 바에 장바구니 메뉴달기
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.action_cart, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> {return super.onOptionsItemSelected(item)}
+        }
     }
 
 

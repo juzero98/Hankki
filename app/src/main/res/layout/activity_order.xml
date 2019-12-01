@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:background="@color/colorApp"
+        android:gravity="center"
+        android:text="주문하기"
+        android:textSize="30dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="149dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="결제 금액"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/totalPriceView"
+            android:layout_width="131dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="00000"
+            android:textSize="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="원"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="276dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="111dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="내 잔액"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/myPointView"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="00000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="원"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="결제하시겠습니까?"
+        android:textSize="35dp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/yesBtn"
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:text="YES"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/noBtn"
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:text="NO"
+            android:textSize="30dp" />
+
+
+    </LinearLayout>
 </LinearLayout>

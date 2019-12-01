@@ -8,9 +8,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
 import kotlinx.android.synthetic.main.activity_write.*
 import android.app.ListActivity
+import android.content.Intent
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.Menu
+import android.view.MenuItem
 
 class WriteActivity : AppCompatActivity() {
 
@@ -66,4 +69,20 @@ class WriteActivity : AppCompatActivity() {
         }
     }
 
+    // 상단 바에 장바구니 메뉴달기
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.action_cart, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> {return super.onOptionsItemSelected(item)}
+        }
+    }
 }
