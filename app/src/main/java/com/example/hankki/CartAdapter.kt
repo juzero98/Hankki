@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_cart.view.*
 import kotlinx.android.synthetic.main.list_cart.view.*
 import java.util.ArrayList
 
@@ -18,6 +19,10 @@ class CartAdapter : BaseAdapter {
     private val ctx: Context?
     private val data: ArrayList<Cart>
     private val projection = arrayOf("name", "price", "amount")
+
+    private var price = 0
+    private var amount = 0
+    private var totalPrice = 0
 
     constructor(_ctx: Context?, _data: ArrayList<Cart>) {
         ctx = _ctx
@@ -69,7 +74,7 @@ class CartAdapter : BaseAdapter {
             }
 
         // 메뉴 별 총 가격
-        val totalPrice = m.price!! * m.amount!!
+        totalPrice = m.price!! * m.amount!!
 
         // 이름, 총 가격, 수량 띄우는 코드
         nameView.text = m.name
@@ -84,6 +89,10 @@ class CartAdapter : BaseAdapter {
             change(view, m, "plus");
         }
 
+        view.deleteBtn.setOnClickListener {
+            delete(view, m)
+        }
+
         return view
     }
 
@@ -94,8 +103,7 @@ class CartAdapter : BaseAdapter {
         var values : ContentValues = ContentValues()
 
         var name = menu.name
-        var price = menu.price
-        var amount = 0
+        price = menu.price!!
 
         // DB에 저장된 값(amount) 불러오기
         val cur = cartDB.query("cart", projection, "name=?", Array<String>(1){name!!}, null, null, null)
@@ -108,11 +116,11 @@ class CartAdapter : BaseAdapter {
 
         // 원래 총 가격 구하기
         var totalPrice = price!! * amount!!
-
+        (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() + totalPrice)
 
         // - 버튼 눌렸을 때
         if(option == "minus") {
-            if(amount == 0) {
+            if(amount == 1) {
                 return
             }
             amount = amount?.minus(1)
@@ -127,6 +135,7 @@ class CartAdapter : BaseAdapter {
             view.price.text = (totalPrice.toString() + "원")
             view.amountView.text = amount.toString()
 
+            (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() - price)
         }
 
         // + 버튼 눌렸을 때
@@ -142,10 +151,22 @@ class CartAdapter : BaseAdapter {
             // TextView 내용 수정
             view.price.text = (totalPrice.toString() + "원")
             view.amountView.text = amount.toString()
+            (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() +price)
         }
 
 
     }
 
+    // 삭제 버튼 눌렀을 때 DB내용과 TextView 지우는 함수
+    fun delete(view : View, menu : Cart) {
+        val helper = CartDBHelper(this.ctx!!)
+        val cartDB = helper.writableDatabase
+
+        val name = menu.name
+        cartDB.delete("cart", "name=?", Array<String>(1){name!!})
+        cartDB.close()
+
+        (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice()-totalPrice)
+    }
 
 }
