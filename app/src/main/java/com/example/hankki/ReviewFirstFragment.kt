@@ -58,16 +58,28 @@ class ReviewFirstFragment : DialogFragment() {
         val mAdapter = ReviewAdapter(this.activity, reviewData)
         mGrid.adapter = mAdapter
         mGrid.setOnItemClickListener{ parent, view, position, id ->
-            // showDetail(menuData[position].name)
+            oneLineReview(menuData[position].name)
+            //val newDialogFragment = OneLineFragment.newInstance("한줄평을 확인하세요")
+           // newDialogFragment.show(fragmentManager, "dialog")
+
+
+
         }
     }
 
+
+
     private fun oneLineReview(name : String?) {
 
-        val dialogFragment = fragment as DialogFragment
-        dialogFragment.dismiss()
+       // val dialogFragment = fragment as DialogFragment
+       // dialogFragment.dismiss()
+
+       // val bulider = AlertDialog.Builder(GetActivity())
+       // val inflater = activity!!.getLayoutFlater()
+
 
         val alert: AlertDialog? = null
+       // val builder = AlertDialog.Builder(ReviewFirstFragment)
         val build = AlertDialog.Builder(this.activity!!)
         val inflater = activity!!.layoutInflater
         build.setTitle("One-line review")
