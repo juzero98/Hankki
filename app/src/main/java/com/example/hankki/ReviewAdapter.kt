@@ -15,6 +15,10 @@ class ReviewAdapter : BaseAdapter {
     private val ctx: Context?
     private val data: ArrayList<SeeReviewData>
     private val db = FirebaseFirestore.getInstance()
+    private val starsArray = emptyArray<Float>()
+    var i = 0
+    var sum = 0.0
+    var avg = 0.0
 
     constructor(_ctx: Context?, _data: ArrayList<SeeReviewData>) {
         ctx = _ctx
@@ -64,17 +68,15 @@ class ReviewAdapter : BaseAdapter {
                     val stara = document.get("star").toString()
                     val stars = stara.toFloat()
 
-
-                    star.rating = stars!!
+                    sum += stars
+                    i++
+                    avg = sum/i
+                    star.rating = avg.toFloat()
 
                 }
-
-
-
                 price.text = (m.price.toString() + "원")
-
-
             }
+
         return view
     }
 }
