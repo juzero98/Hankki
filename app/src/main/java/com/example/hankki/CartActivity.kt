@@ -59,23 +59,23 @@ class CartActivity : AppCompatActivity() {
         for(data : Cart in cartData) {
             totalPrice += data.price!!
         }
+        setTotalPrice(totalPrice)
     }
 
     // 장바구니 총 금액 계산
-
     public fun setTotalPrice(tp : Int) {
         totalPrice = tp
         totalPriceView.text = totalPrice.toString()
-        onResume()
+        mListView?.deferNotifyDataSetChanged()
     }
 
     public fun getTotalPrice() : Int {
         return totalPrice
     }
-    override public fun onResume() {
+    /*override public fun onResume() {
         super.onResume()
-        mListView?.deferNotifyDataSetChanged()
-    }
+
+    }*/
 
    /* // 상단 바에 장바구니 메뉴달기
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
