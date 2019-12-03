@@ -10,47 +10,50 @@
         android:layout_height="71dp"
         android:background="@color/colorApp"
         android:gravity="center"
-        android:text="주문하기"
+        android:text="주문완료"
         android:textSize="30dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="221dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="149dp"
-            android:layout_height="match_parent"
+            android:layout_height="77dp"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:text="결제 금액"
-            android:textSize="30dp" />
+            android:text="주문번호"
+            android:textSize="27dp" />
 
         <TextView
-            android:id="@+id/totalPriceView"
-            android:layout_width="131dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
+            android:id="@+id/orderNum"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:text="00000"
-            android:textSize="30dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:gravity="center"
-            android:text="원"
-            android:textSize="30dp" />
+            android:text="000"
+            android:textSize="80dp"
+            android:textStyle="bold" />
     </LinearLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:gravity="center"
+        android:text="주문한 음식이 나오면 \n 알림으로 알려드릴게요"
+        android:textSize="23dp"
+        android:textStyle="bold"/>
     <LinearLayout
-        android:layout_width="276dp"
+        android:layout_width="309dp"
         android:layout_height="100dp"
         android:layout_gravity="center">
 
         <TextView
-            android:layout_width="111dp"
+            android:layout_width="145dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="내 잔액"
+            android:text="결제 후 잔액"
             android:textSize="25dp" />
 
         <TextView
@@ -71,39 +74,21 @@
             android:textSize="25dp" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="87dp"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="결제하시겠습니까?"
-        android:textSize="35dp"
-        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="137dp"
         android:gravity="center">
 
         <Button
-            android:id="@+id/yesBtn"
-            android:layout_width="151dp"
+            android:id="@+id/closeBtn"
+            android:layout_width="126dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="20dp"
             android:layout_margin="10dp"
-            android:text="YES"
-            android:textSize="30dp" />
-
-        <Button
-            android:id="@+id/noBtn"
-            android:layout_width="151dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:padding="20dp"
-            android:layout_margin="10dp"
-            android:text="NO"
-            android:textSize="30dp" />
+            android:text="닫기"
+            android:textSize="25dp" />
 
 
     </LinearLayout>
