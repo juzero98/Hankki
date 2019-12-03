@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="잘못된 비밀 번호 입니다"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:gravity="center"
+        android:layout_marginTop="40sp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="다시 확인해주세요"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+</LinearLayout>

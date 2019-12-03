@@ -12,9 +12,8 @@ class GiveReviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_givereview)
 
-
-
     }
+
     // 상단 바에 장바구니 메뉴달기
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.action_cart, menu)
