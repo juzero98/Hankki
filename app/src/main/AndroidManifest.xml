@@ -42,7 +42,7 @@
 
         <activity android:name=".OrderActivity" android:parentActivityName = ".RatingActivity"/>
 
-
+        <activity android:name=".WaitingActivity" android:parentActivityName = ".OrderActivity"/>
     </application>
 
 </manifest>

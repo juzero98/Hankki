@@ -1,13 +1,27 @@
 package com.example.hankki
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_order.*
 
 class OrderActivity : AppCompatActivity() {
+    val db = FirebaseFirestore.getInstance()
+    val menus = arrayListOf<String>()
+    val amounts = arrayListOf<Int>()
+    var tp = 0
+    var myCash = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
+        getAll()
+
+
+    }
+    fun getAll() {
         val helper = CartDBHelper(this)
         val cartDB = helper.writableDatabase
         val projection = arrayOf("name", "price", "amount")
@@ -26,7 +40,8 @@ class OrderActivity : AppCompatActivity() {
             price = intent.extras!!.getInt("price")
             amount = intent.extras!!.getInt("amount")
             totalPrice = price!! * amount!!
-
+            menus.add(name)
+            amounts.add(amount)
         }
 
         // 장바구니 - 주문일 때
@@ -38,6 +53,8 @@ class OrderActivity : AppCompatActivity() {
                 val amount_col = cur.getColumnIndex("amount")
                 while(cur.moveToNext()) {
                     datas.add(Cart(cur.getString(name_col), cur.getInt(price_col), cur.getInt(amount_col)))
+                    menus.add(cur.getString(name_col))
+                    amounts.add(cur.getInt(amount_col))
                 }
             }
 
@@ -46,17 +63,39 @@ class OrderActivity : AppCompatActivity() {
             }
         }
 
+        tp = totalPrice
         totalPriceView.text = totalPrice.toString()
+        getMyCash()
+    }
+    // 내 잔액 불러오는 함수
+    fun getMyCash() {
+        val prefs = getSharedPreferences("user", 0)
+        val id : String = prefs.getString("id","").toString()
+        db.collection("users")
+            .whereEqualTo("id", id)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    myCash = document.get("cash").toString()
+                }
+                myCashView.text = myCash
+            }
 
+        setListener()
+    }
 
+    fun setListener() {
         yesBtn.setOnClickListener {
-
+            val intent = Intent(this, WaitingActivity::class.java)
+            intent.putExtra("menus", menus)
+            intent.putExtra("amounts", amounts)
+            intent.putExtra("totalPrice", tp)
+            intent.putExtra("myCash", myCash)
+            startActivity(intent)
         }
 
         noBtn.setOnClickListener {
             this.finish()
         }
-
-
     }
 }
