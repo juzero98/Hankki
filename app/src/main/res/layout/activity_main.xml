@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/colorApp">
+    android:background="@color/colorApp"
+>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +21,8 @@
             android:text="한성 세끼"
             android:textSize="60dp"
             android:textColor="#FFFFFF"
-            android:layout_margin="30dp"/>
+            android:layout_margin="30dp"
+            android:fontFamily="@font/bmjua"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,7 +35,8 @@
                 android:text="로그인"
                 android:padding="25dp"
                 android:layout_margin="10dp"
-                android:background="#FFFFFF"/>
+                android:background="#FFFFFF"
+                android:fontFamily="@font/bmjua"/>
 
             <Button
                 android:id="@+id/joinBtn"
@@ -42,7 +45,8 @@
                 android:text="회원가입"
                 android:padding="25dp"
                 android:layout_margin="10dp"
-                android:background="#FFFFFF"/>
+                android:background="#FFFFFF"
+                android:fontFamily="@font/bmjua"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

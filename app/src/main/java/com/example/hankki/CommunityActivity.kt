@@ -66,6 +66,7 @@ class CommunityActivity : AppCompatActivity() {
 
     fun readFirestore(){ //db 읽어와
         db.collection("board")
+            .orderBy("count")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents ) {

@@ -31,7 +31,23 @@ class CartActivity : AppCompatActivity() {
             startActivityForResult(intent, 0)
             //startActivity(intent)
         }
+
+        swipe.setOnRefreshListener {
+            afterIn()
+            swipe.isRefreshing = false
+        }
     }
+
+    private fun afterIn(){
+        cartData.clear()
+        val helper = CartDBHelper(this)
+        read(helper)
+        /*mListView = listView
+        val mAdapter = CartAdapter(this, cartData)
+        mListView?.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()*/
+    }
+
 
     // SQLite에서 장바구니(Cart 테이블)에 담긴 목록 불러 와서 ArrayList에 저장
     private fun read(helper: CartDBHelper) {

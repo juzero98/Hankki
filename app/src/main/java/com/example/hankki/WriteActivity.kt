@@ -39,12 +39,13 @@ class WriteActivity : AppCompatActivity() {
             var numString = num.toString()
 
             db.collection("board")
+                .orderBy("count")
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents ) {
                         val count = document.get("count").toString()
-                        val numInt = Integer.parseInt(count)
-                        if(num == numInt){
+                        //val numInt = Integer.parseInt(count)
+                        if(num == Integer.parseInt(count)){
                             num++
                         }
                     }

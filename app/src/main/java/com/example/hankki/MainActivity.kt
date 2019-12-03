@@ -4,9 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
-import android.view.Menu
-import android.view.MenuItem
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,21 +25,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-   /* override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.action_cart, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.action_cart -> {
-                val intent = Intent(this, CartActivity::class.java)
-                val intent = Intent(this, CartActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-            else -> {return super.onOptionsItemSelected(item)}
-        }
-    }
-*/
 }
