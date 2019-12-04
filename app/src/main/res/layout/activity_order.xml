@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:background="@color/colorApp"
+        android:textColor="#FFFFFF"
         android:gravity="center"
         android:text="주문하기"
         android:textSize="30dp" />
