@@ -8,6 +8,7 @@
     <color name="colorCommunityBtn">#a9bccb</color>
     <color name="colorScoreBtn">#cc5c5c</color>
     <color name="colorMyPageBtn">#cbd6df</color>
+    <color name="gray">#EEECEC</color>
 
 
 </resources>
