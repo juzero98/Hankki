@@ -16,10 +16,9 @@ import kotlinx.android.synthetic.main.fragment_menu_firstfragment.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import android.R.attr.fragment
+import android.content.Intent
 
 
-
-//class ReviewFirstFragment : Fragment() {
 class ReviewFirstFragment : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
     private val reviewData = ArrayList<SeeReviewData>()
@@ -32,6 +31,7 @@ class ReviewFirstFragment : DialogFragment() {
         return view
     }
 
+    //fragment에 메뉴와 평점 띄우는 함수
     private fun read() {
         db.collection("menu")
             .whereEqualTo("category", "면류&찌개&김밥")
@@ -41,9 +41,11 @@ class ReviewFirstFragment : DialogFragment() {
                     val img = document.get("img").toString()
                     val name = document.get("name").toString()
                     val price = document.get("price").toString()
+                    val menu = null
                     if (!readSucess) {
                         reviewData.add(SeeReviewData(img, name, price))
                     }
+
                 }
                 upload()
                 readSucess = true
@@ -58,69 +60,15 @@ class ReviewFirstFragment : DialogFragment() {
         val mAdapter = ReviewAdapter(this.activity, reviewData)
         mGrid.adapter = mAdapter
         mGrid.setOnItemClickListener{ parent, view, position, id ->
-            oneLineReview(menuData[position].name)
-            //val newDialogFragment = OneLineFragment.newInstance("한줄평을 확인하세요")
-           // newDialogFragment.show(fragmentManager, "dialog")
-
-
-
+            oneLineReview(reviewData[position].name)
         }
     }
 
-
-
-    private fun oneLineReview(name : String?) {
-
-       // val dialogFragment = fragment as DialogFragment
-       // dialogFragment.dismiss()
-
-       // val bulider = AlertDialog.Builder(GetActivity())
-       // val inflater = activity!!.getLayoutFlater()
-
-
-        val alert: AlertDialog? = null
-       // val builder = AlertDialog.Builder(ReviewFirstFragment)
-        val build = AlertDialog.Builder(this.activity!!)
-        val inflater = activity!!.layoutInflater
-        build.setTitle("One-line review")
-        val dialogLayout = inflater.inflate(R.layout.oneline_dialog, null)
-        // val editText = dialogLayout.findViewById<EditText>(R.id.dialogEt)
-        build.setView(dialogLayout)
-        read1(name)
-        build.setPositiveButton("OK") { dialogInterface, i ->
-
-        }
-        build.show()
+    private fun oneLineReview(menu: String?) {
+            val intent = Intent(context, OneLineReview::class.java)
+            intent.putExtra("menu",menu)
+            startActivity(intent)
 
     }
 
-    private fun read1(menuname : String?) {
-        db.collection("menu")
-            .whereEqualTo("menu", menuname)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val menuname = document.get("name").toString()
-                    if (!readSucess) {
-                        // reviewData.add(SeeReviewData(img, name, price, star.toFloat()))
-                        onelineData.add(OnelineData(menuname))
-                    }
-
-                }
-                upload1()
-                readSucess = true
-
-            }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents: ", exception)
-            }
-    }
-
-    fun upload1() {
-        val mGrid = grid
-        val mAdapter =
-            OneLineAdapter(activity!!,onelineData )
-        mGrid.adapter = mAdapter
-
-    }
 }
