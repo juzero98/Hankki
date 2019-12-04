@@ -22,7 +22,8 @@ class CartAdapter : BaseAdapter {
 
     private var price = 0
     private var amount = 0
-    private var totalPrice = 0
+    /*private var totalPrice = 0*/
+    private var totalPriceOfMenu = 0
 
     constructor(_ctx: Context?, _data: ArrayList<Cart>) {
         ctx = _ctx
@@ -50,8 +51,10 @@ class CartAdapter : BaseAdapter {
 
         val imgView = view.img
         val nameView = view.name
+        val priceOfMenuView = view.priceOfMenu
         val priceView = view.price
         val amountView = view.amountView
+        val numView = view.num
 
         val m = data[position]
         var img : String = ""
@@ -74,12 +77,15 @@ class CartAdapter : BaseAdapter {
             }
 
         // 메뉴 별 총 가격
-        totalPrice = m.price!! * m.amount!!
+        totalPriceOfMenu = m.price!! * m.amount!!
+        //(ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() + totalPriceOfMenu)
 
         // 이름, 총 가격, 수량 띄우는 코드
         nameView.text = m.name
-        priceView.text = (totalPrice.toString() + "원")
+        priceOfMenuView.text = m.price.toString()
+        priceView.text = (totalPriceOfMenu.toString() + "원")
         amountView.text = m.amount.toString()
+        numView.text = m.amount.toString()
 
         view.minusBtn.setOnClickListener {
             change(view, m, "minus");
@@ -114,34 +120,40 @@ class CartAdapter : BaseAdapter {
             }
         }
 
-        // 원래 총 가격 구하기
-        var totalPrice = price!! * amount!!
-        (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() + totalPrice)
+        /*// 원래 총 가격 구하기
+        totalPriceOfMenu = price!! * amount!!
+        (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() + totalPrice)*/
 
         // - 버튼 눌렸을 때
         if(option == "minus") {
+            // 수량이 1 미만으로 내려가지 않도록
             if(amount == 1) {
                 return
             }
-            amount = amount?.minus(1)
-            totalPrice = price!! * amount!!
+            else {
+                // 수량 1 감소
+                amount = amount?.minus(1)
+                totalPriceOfMenu = price!! * amount!!
 
-            // SQLite DB 내용 수정
-            values.put("amount", amount)
-            cartDB.update("cart", values, "name=?", Array<String>(1){name!!})
-            cartDB.close()
+                // SQLite DB 내용 수정
+                values.put("amount", amount)
+                cartDB.update("cart", values, "name=?", Array<String>(1) { name!! })
+                cartDB.close()
 
-            // TextView 내용 수정
-            view.price.text = (totalPrice.toString() + "원")
-            view.amountView.text = amount.toString()
+                // TextView 내용 수정
+                view.priceOfMenu.text = price.toString()
+                view.price.text = (totalPriceOfMenu.toString() + "원")
+                view.amountView.text = amount.toString()
+                view.num.text = amount.toString()
 
-            (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() - price)
+                (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() - price)
+            }
         }
 
         // + 버튼 눌렸을 때
         else if(option == "plus") {
             amount = amount?.plus(1)
-            totalPrice = price!! * amount!!
+            totalPriceOfMenu = price!! * amount!!
 
             // SQLite DB 내용 수정
             values.put("amount",amount)
@@ -149,9 +161,12 @@ class CartAdapter : BaseAdapter {
             cartDB.close()
 
             // TextView 내용 수정
-            view.price.text = (totalPrice.toString() + "원")
+            view.priceOfMenu.text = price.toString()
+            view.price.text = (totalPriceOfMenu.toString() + "원")
             view.amountView.text = amount.toString()
-            (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() +price)
+            view.num.text = amount.toString()
+
+            (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() + price)
         }
 
 
@@ -163,10 +178,22 @@ class CartAdapter : BaseAdapter {
         val cartDB = helper.writableDatabase
 
         val name = menu.name
+        var amount = 0
+        val cur = cartDB.query("cart", projection, "name=?", Array<String>(1){name!!}, null, null, null)
+        if (cur != null) {
+            val amount_col = cur.getColumnIndex("amount")
+            while(cur.moveToNext()) {
+                amount = cur.getInt(amount_col)
+            }
+        }
         cartDB.delete("cart", "name=?", Array<String>(1){name!!})
         cartDB.close()
 
-        (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice()-totalPrice)
+        totalPriceOfMenu = menu.price!! * amount
+
+        (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice()-totalPriceOfMenu)
+        (ctx as CartActivity).delete()
+
     }
 
 }

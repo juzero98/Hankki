@@ -38,7 +38,7 @@ class CartActivity : AppCompatActivity() {
         }
     }
 
-    private fun afterIn(){
+    public fun afterIn(){
         cartData.clear()
         val helper = CartDBHelper(this)
         read(helper)
@@ -48,11 +48,18 @@ class CartActivity : AppCompatActivity() {
         mAdapter.notifyDataSetChanged()*/
     }
 
+    public fun delete() {
+        cartData.clear()
+        val helper = CartDBHelper(this)
+        read(helper)
+    }
+
 
     // SQLite에서 장바구니(Cart 테이블)에 담긴 목록 불러 와서 ArrayList에 저장
     private fun read(helper: CartDBHelper) {
         val db = helper.readableDatabase
         val cur = db.query("cart", projection, null, null, null, null, null)
+        var tp = 0
         if (cur != null) {
             val name_col = cur.getColumnIndex("name")
             val price_col = cur.getColumnIndex("price")
@@ -62,8 +69,10 @@ class CartActivity : AppCompatActivity() {
                 val price = cur.getInt(price_col)
                 val amount = cur.getInt(amount_col)
                 cartData.add(Cart(name, price, amount))
+                tp += price * amount
             }
         }
+        setTotalPrice(tp)
         upload()
     }
 
@@ -71,11 +80,6 @@ class CartActivity : AppCompatActivity() {
         mListView = listView
         val mAdapter = CartAdapter(this, cartData)
         mListView?.adapter = mAdapter
-
-        for(data : Cart in cartData) {
-            totalPrice += data.price!!
-        }
-        setTotalPrice(totalPrice)
     }
 
     // 장바구니 총 금액 계산
