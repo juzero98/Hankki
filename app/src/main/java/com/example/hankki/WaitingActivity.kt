@@ -57,9 +57,8 @@ class WaitingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
     }
-
-
 
     // 내 잔액에서 차감하는 함수
     fun calcMyCash(totalPrice : Int, myCash : String) {

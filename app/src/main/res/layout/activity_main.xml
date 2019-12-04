@@ -48,5 +48,6 @@
                 android:background="#FFFFFF"
                 android:fontFamily="@font/bmjua"/>
         </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

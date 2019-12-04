@@ -57,11 +57,6 @@ class WriteActivity : AppCompatActivity() {
                     numString = num.toString()
                     val board = Board(writeContent, id, writeTitle, num)
                     db.collection("board").document(numString).set(board)
-
-                    /*readFirestore()*/
-
-                    val community = CommunityActivity()
-                    community.compare = 1
                 }
 
             finish()//신기해

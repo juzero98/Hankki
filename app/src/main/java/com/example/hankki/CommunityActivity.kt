@@ -8,14 +8,13 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
 
 class CommunityActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
-    val commuData = ArrayList<MyCommunity>()
-
-    var compare:Int =0
+    private val commuData = ArrayList<MyCommunity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -23,9 +22,6 @@ class CommunityActivity : AppCompatActivity() {
         setContentView(R.layout.activity_community)
 
         val id = intent.getStringExtra("id")
-
-        readFirestore()
-
 
         writeBtn.setOnClickListener{
             val intent = Intent(this, WriteActivity::class.java)
@@ -44,30 +40,33 @@ class CommunityActivity : AppCompatActivity() {
             swipe.isRefreshing = false
         }
 
-
-    }
-
-   override fun onResume() {
-        super.onResume()
-
-       var writeActivity = WriteActivity()
-       if(writeActivity.isFinishing){
-           afterWrite()
-       }
+        readFirestore()
     }
 
     fun afterWrite(){
         commuData.clear()
         readFirestore()
-        /*val mGrid = grid
-        val mAdapter = CommunityAdapter(this, commuData)
-        mAdapter.notifyDataSetChanged()*/
     }
 
     fun readFirestore(){ //db 읽어와
         db.collection("board")
             .orderBy("count")
-            .get()
+            .addSnapshotListener{snapshots, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+
+                for (dc in snapshots!!.documentChanges) {
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+                            var title = dc.document.get("title").toString()
+                            commuData.add(MyCommunity(title))
+                        }
+                    }
+                }
+                upload()
+            }
+            /*.get()
             .addOnSuccessListener { documents ->
                 for (document in documents ) {
                     var title = document.get("title").toString()
@@ -80,18 +79,19 @@ class CommunityActivity : AppCompatActivity() {
             }
             .addOnFailureListener { exception ->
                 Log.w("", "Error getting documents: ", exception)
-            }
+            }*/
     }
 
     fun upload(){ //gridview에 upload
         val mGrid = grid
-        val mAdapter = CommunityAdapter(this, commuData)
-        mGrid.adapter = mAdapter
+        val reversedCommuData = commuData.reversed() as MutableList<MyCommunity>
+        val mAdapter = CommunityAdapter(this, reversedCommuData)
+        mGrid?.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
 
         mGrid.setOnItemClickListener{ parent, view, position, id ->
-            showDialog(commuData[position].titleId)
+            showDialog(reversedCommuData[position].titleId)
         }
-
     }
 
     fun showDialog(titleId:String?){
