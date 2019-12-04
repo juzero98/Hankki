@@ -1,6 +1,6 @@
 package com.example.hankki
 
-import android.app.Notification
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,15 +46,15 @@ class MainActivity : AppCompatActivity() {
 
                 for (dc in snapshots!!.documentChanges) {
                     when (dc.type) {
-                        DocumentChange.Type.MODIFIED -> notify(dc.document.get("finish").toString().toBoolean())
+                        DocumentChange.Type.MODIFIED -> {
+                            notify(dc.document.get("finish").toString().toBoolean(), dc.document.get("menu").toString(), dc.document.get("orderNum").toString())
+                        }
                     }
                 }
             }
-
-
     }
 
-    fun notify(finish : Boolean) {
+    fun notify(finish : Boolean, orderedMenu:String , orderedNum:String) {
         if(finish) {
             val notificationManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             if( android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setContentTitle("음식 완성")
-                .setContentText("음식을 수령해주세요")
+                .setContentText(orderedNum + "번 손님! " + orderedMenu + " 음식을 수령해주세요")
                 .setAutoCancel(true)
                 .setSound(notificationSound)
                 .setContentIntent(pendingIntent)

@@ -22,7 +22,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="#FFFF89">
+        android:background="#EEECEC">
 
         <TextView
             android:id="@+id/totalPriceLabel"
