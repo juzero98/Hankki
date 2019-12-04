@@ -49,7 +49,7 @@ class OneLineAdapter : BaseAdapter {
 
         menuName.text = m.menuname
 
-        db.collection("reviews")
+      /*  db.collection("reviews")
             .whereEqualTo("menu", m.menuname)
             .get()
             .addOnSuccessListener { documents ->
@@ -63,7 +63,9 @@ class OneLineAdapter : BaseAdapter {
                 }
 
 
-            }
+            }*/
+        review.text = m.review
+        id.text = m.id
         return view
     }
 }

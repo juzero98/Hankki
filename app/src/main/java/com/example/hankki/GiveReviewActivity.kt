@@ -12,7 +12,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_community.*
 import kotlinx.android.synthetic.main.activity_mypage.*
+import kotlinx.android.synthetic.main.activity_mypage.grid
 
 class GiveReviewActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
@@ -27,12 +29,23 @@ class GiveReviewActivity : AppCompatActivity() {
 
         val prefs = getSharedPreferences("user", 0)
         var userId = prefs.getString("id", "")
-        //  intent.putExtra("id",userId)
-
-        // readReview(userId)
         readOrderMenu(userId)
 
+
+        swipe.setOnRefreshListener {
+            afterWrite()
+
+            swipe.isRefreshing = false
+        }
+
     }
+
+    fun afterWrite(){
+        val userIdd = intent.getStringExtra("id")
+        readOrderMenuData.clear()
+        readOrderMenu(userIdd)
+    }
+
 
     //orders DB에서 내가 먹은 메뉴 불러오기
     private fun readOrderMenu(userId: String?) {
@@ -51,7 +64,6 @@ class GiveReviewActivity : AppCompatActivity() {
 
 
                 upload()
-                //  menu.text = datas[1]//.toString()
             }
             .addOnFailureListener { exception ->
                 Log.w("", "Error getting documents: ", exception)
@@ -71,15 +83,6 @@ class GiveReviewActivity : AppCompatActivity() {
 
         }
 
-
-    }
-
-    fun uploadMenu(menu:String?){
-        Toast.makeText(
-            applicationContext,
-            "menu:" + menu ,
-            Toast.LENGTH_SHORT
-        ).show()
 
     }
 

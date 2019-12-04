@@ -20,17 +20,26 @@
             android:text="별점주기"
             android:textSize="30dp" />
 
-        <GridView
-            android:id="@+id/grid"
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnWidth="200dp"
-            android:gravity="center"
-            android:horizontalSpacing="4dp"
-            android:numColumns="1"
-            android:padding="2dp"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="2dp"></GridView>
+            android:layout_height="match_parent">
+
+            <GridView
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnWidth="200dp"
+                android:gravity="center"
+                android:horizontalSpacing="4dp"
+                android:numColumns="1"
+                android:padding="2dp"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="2dp"></GridView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     </LinearLayout>
 

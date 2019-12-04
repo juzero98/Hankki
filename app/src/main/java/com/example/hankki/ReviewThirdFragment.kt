@@ -1,6 +1,7 @@
 package com.example.hankki
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -51,6 +52,15 @@ class ReviewThirdFragment : Fragment() {
         val mGrid = grid
         val mAdapter = ReviewAdapter(this.activity, reviewData)
         mGrid.adapter = mAdapter
+        mGrid.setOnItemClickListener{ parent, view, position, id ->
+            oneLineReview(reviewData[position].name)
+        }
+    }
+
+    private fun oneLineReview(menu: String?) {
+        val intent = Intent(context, OneLineReview::class.java)
+        intent.putExtra("menu",menu)
+        startActivity(intent)
 
     }
 
