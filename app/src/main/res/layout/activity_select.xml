@@ -1,62 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#EEECEC">
 
-<TableLayout
-    android:id="@+id/tableLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal">
 
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3">
+
         <Button
             android:id="@+id/menuBtn"
-            android:text="메뉴"
-            android:layout_width="0dip"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:background="@color/colorMenuBtn"/>
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/menu" />
 
         <Button
             android:id="@+id/communityBtn"
-            android:text="커뮤니티"
-            android:layout_width="0dip"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:background="@color/colorCommunityBtn"/>
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/comunity" />
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
+    <LinearLayout
         android:id="@+id/tableRow2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3">
+        android:layout_width="match_parent"
+        android:layout_height="214dp">
+
         <Button
             android:id="@+id/scoreBtn"
-            android:text="평점"
-            android:layout_width="0dip"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:background="@color/colorScoreBtn"/>
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/review"
+            />
 
         <Button
             android:id="@+id/myPageBtn"
-            android:text="MyPage"
-            android:layout_width="0dip"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:background="@color/colorMyPageBtn"/>
-    </TableRow>
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/mypage"
+             />
+    </LinearLayout>
 
-</TableLayout>
+    <Button
+        android:layout_width="237dp"
+        android:layout_height="60dp"
+        android:background="@drawable/text1" />
 
-</RelativeLayout>
+</LinearLayout>
+
