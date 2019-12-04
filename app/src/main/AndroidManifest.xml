@@ -45,6 +45,8 @@
         <activity android:name=".WaitingActivity" android:parentActivityName = ".OrderActivity"/>
 
         <activity android:name=".GiveReviewActivity"/>
+
+        <activity android:name=".WriteReview"/>
     </application>
 
 </manifest>
