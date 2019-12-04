@@ -10,14 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".MainActivity"/>
         <activity android:name=".LoginActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".JoinActivity" android:parentActivityName=".MainActivity"/>
 
@@ -47,7 +47,6 @@
         <activity android:name=".GiveReviewActivity"/>
 
         <activity android:name=".WriteReview"/>
-        <activity android:name=".OneLineReview"/>
     </application>
 
 </manifest>
