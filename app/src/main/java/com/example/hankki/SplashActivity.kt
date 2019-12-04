@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
 
-    val SPLASH_TIME_OUT: Long = 3000
+    val SPLASH_TIME_OUT: Long = 2500
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

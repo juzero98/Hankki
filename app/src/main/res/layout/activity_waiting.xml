@@ -10,6 +10,7 @@
         android:layout_height="71dp"
         android:background="@color/colorApp"
         android:gravity="center"
+        android:textColor="#FFFFFF"
         android:text="주문완료"
         android:textSize="30dp" />
 

@@ -55,6 +55,7 @@ class WaitingActivity : AppCompatActivity() {
         closeBtn.setOnClickListener {
             val intent = Intent(this, SelectActivity::class.java)
             startActivity(intent)
+            this.finish()
         }
 
 

@@ -92,6 +92,7 @@ class OrderActivity : AppCompatActivity() {
             intent.putExtra("totalPrice", tp)
             intent.putExtra("myCash", myCash)
             startActivity(intent)
+            this.finish()
         }
 
         noBtn.setOnClickListener {
