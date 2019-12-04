@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorApp</item>
         <item name="colorPrimaryDark">@color/colorApp</item>
         <item name="colorAccent">@color/colorApp</item>
+        <item name="android:fontFamily">@font/bmjua</item>
     </style>
 
     <!-- Splash Screen theme.-->
