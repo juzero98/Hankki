@@ -20,8 +20,6 @@ class GiveReviewActivity : AppCompatActivity() {
     //  private val readReviewData = ArrayList<ReadReviewData>()
     private var readSucess = false
     private val datas = arrayOfNulls<String>(3)
-    // val prefs = getSharedPreferences("user", 0)
-    // var userId = prefs.getString("id", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,39 +57,32 @@ class GiveReviewActivity : AppCompatActivity() {
                 Log.w("", "Error getting documents: ", exception)
             }
     }
-/*
-    //db에서 별이랑 한줄평 가져오는 함수
-    fun readReview(userId: String?) {
-        db.collection("reviews")
-            .whereEqualTo("id", userId)
-            .whereEqualTo("menu", datas[0])
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val star = document.get("star").toString()
-                    val review = document.get("review").toString()
-                    readReviewData.add(ReadReviewData(star.toFloat(), review))
-
-                }
-
-                upload()
-                // readSucess = true
-
-            }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents: ", exception)
-            }
-    }
-*/
-
 
     fun upload() {
         val mGrid = grid
         //  val mAdapter = GiveReviewAdapter(this, readOrderMenuData,userId!!)
         val mAdapter = GiveReviewAdapter(this, readOrderMenuData)
         mGrid.adapter = mAdapter
+        mGrid.setOnItemClickListener{ parent, view, position, id ->
+            // uploadMenu(readOrderMenuData[position].menu)
+            val intent = Intent(this, WriteReview::class.java)
+            intent.putExtra("menu",readOrderMenuData[position].menu)
+            startActivity(intent)
+
+        }
+
 
     }
+
+    fun uploadMenu(menu:String?){
+        Toast.makeText(
+            applicationContext,
+            "menu:" + menu ,
+            Toast.LENGTH_SHORT
+        ).show()
+
+    }
+
 
     // 상단 바에 장바구니 메뉴달기
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

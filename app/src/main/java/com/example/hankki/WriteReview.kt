@@ -1,5 +1,6 @@
 package com.example.hankki
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -17,6 +18,8 @@ class WriteReview : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.give_review)
         var num = 1
+        val prefs = getSharedPreferences("user", 0)
+        var userId = prefs.getString("id", "")
 
         val plusStar_Click = findViewById<Button>(R.id.plusStar)
         plusStar_Click.setOnClickListener {
@@ -30,9 +33,11 @@ class WriteReview : AppCompatActivity() {
         }
         val editText = findViewById<EditText>(R.id.writeReview)
 
+        val menu = intent.getStringExtra("menu")
+
         val submit_btn = findViewById<Button>(R.id.submit)
         submit_btn.setOnClickListener {
-            val writeReview = ReviewData(starNum.toFloat(), editText.text.toString())
+            val writeReview = ReviewData(starNum.toFloat(), editText.text.toString(),userId ,menu)
             db.collection("reviews")
                 .get()
                 .addOnSuccessListener { documents ->
@@ -44,6 +49,7 @@ class WriteReview : AppCompatActivity() {
 
                     }
                 }
+            finish()
         }
     }
 }
