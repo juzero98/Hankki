@@ -6,21 +6,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/colorApp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:text="사용자"
             android:textSize="30dp" />
 
         <TextView
             android:id="@+id/user_name"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_marginLeft="10dp"
+            android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,6 +50,7 @@
             <TextView
                 android:id="@+id/user_cash"
                 android:layout_width="match_parent"
+                android:textSize="25dp"
                 android:layout_height="50dp" />
         </LinearLayout>
 
@@ -54,7 +59,8 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="right"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/button2"
             android:text="충전" />
     </LinearLayout>
 
@@ -75,7 +81,7 @@
         <GridView
             android:id="@+id/grid"
             android:layout_width="match_parent"
-            android:layout_height="389dp"
+            android:layout_height="464dp"
             android:columnWidth="200dp"
             android:gravity="center"
             android:horizontalSpacing="4dp"
