@@ -66,20 +66,7 @@ class CommunityActivity : AppCompatActivity() {
                 }
                 upload()
             }
-            /*.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents ) {
-                    var title = document.get("title").toString()
 
-                    commuData.add(MyCommunity(title))
-                }
-
-                commuData.reverse() //최근글이 위로 가게
-                upload()
-            }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents: ", exception)
-            }*/
     }
 
     fun upload(){ //gridview에 upload
