@@ -84,7 +84,7 @@
         android:layout_marginTop="30dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:background="#FFFF89">
+        android:background="#EEECEC">
 
         <TextView
             android:id="@+id/totalPriceLabel"
@@ -93,6 +93,7 @@
             android:layout_marginLeft="30dp"
             android:text="금액"
             android:textSize="30dp"
+
             android:textStyle="bold"/>
 
         <TextView
