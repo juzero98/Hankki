@@ -3,8 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCommunityBtn">
+    android:background="@color/gray">
     <EditText
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="200sp"
         android:hint="글 제목"
         android:textStyle="bold"
@@ -13,13 +14,17 @@
         android:id="@+id/writeTitle"/>
 
     <EditText
+        android:layout_marginLeft="15dp"
         android:hint="글 내용"
         android:layout_width="match_parent"
         android:layout_height="200sp"
         android:id="@+id/writeContent"/>
 
     <Button
-        android:background="@color/colorApp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right"
+        android:background="@drawable/button2"
         android:text="글쓰기"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
