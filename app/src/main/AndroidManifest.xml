@@ -47,6 +47,9 @@
         <activity android:name=".GiveReviewActivity"/>
 
         <activity android:name=".WriteReview"/>
+
+        <activity android:name=".OneLineReview"/>
+
     </application>
 
 </manifest>
