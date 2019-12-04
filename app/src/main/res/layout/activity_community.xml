@@ -7,29 +7,33 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent">
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="100sp" >
+            android:layout_gravity="center"
+            android:gravity="center">
             <Button
-                android:background="@color/colorApp"
+                android:background="@drawable/button"
                 android:text="글쓰러가기"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/writeBtn"
                 android:layout_marginRight="5sp"/>
 
             <Button
-                android:background="@color/colorApp"
+                android:background="@drawable/button"
                 android:text="학식당 정보 보기"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:id="@+id/showBtn"/>
         </LinearLayout>
 
 
         <TextView
             android:layout_marginTop="20sp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/emptyBoard"
             android:text="게시판"
             android:textSize="30sp"
@@ -40,7 +44,10 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        >
 
         <GridView
             android:id="@+id/grid"
