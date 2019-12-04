@@ -18,6 +18,7 @@ class WriteReview : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.give_review)
         var num = 1
+        var numString = num.toString()
         val prefs = getSharedPreferences("user", 0)
         var userId = prefs.getString("id", "")
 
@@ -37,17 +38,20 @@ class WriteReview : AppCompatActivity() {
 
         val submit_btn = findViewById<Button>(R.id.submit)
         submit_btn.setOnClickListener {
-            val writeReview = ReviewData(starNum.toFloat(), editText.text.toString(),userId ,menu)
             db.collection("reviews")
+                .orderBy("count")
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
-                        if (document.equals(num))
+                        val count = document.get("count").toString()
+                        //val numInt = Integer.parseInt(count)
+                        if(num == Integer.parseInt(count)){
                             num++
-                        else
-                            db.collection("reviews").document().set(writeReview)
-
+                        }
                     }
+                    numString = num.toString()
+                    val writeReview = ReviewData(starNum.toFloat(), editText.text.toString(),userId ,menu, num)
+                    db.collection("reviews").document(numString).set(writeReview)
                 }
             finish()
         }
