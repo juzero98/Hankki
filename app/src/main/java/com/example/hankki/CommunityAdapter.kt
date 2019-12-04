@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.community_list.view.*
 
 class CommunityAdapter : BaseAdapter {
 
+    private val db = FirebaseFirestore.getInstance()
     private val ctx: Context?
-    private val data: ArrayList<MyCommunity>
+    private var data = mutableListOf<MyCommunity>()
 
-    constructor(_ctx: Context?, _data: ArrayList<MyCommunity>) {
+    constructor(_ctx: Context?, _data: MutableList<MyCommunity>) {
         ctx = _ctx
         data = _data
     }
@@ -36,10 +39,10 @@ class CommunityAdapter : BaseAdapter {
         view = inflater.inflate(R.layout.community_list, parent, false)
 
         val titleId = view.titleId
-
         val m = data[position]
-
         titleId.text = m.titleId
+
+
 
         return view
     }

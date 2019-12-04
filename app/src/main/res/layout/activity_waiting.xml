@@ -80,6 +80,7 @@
         android:layout_height="137dp"
         android:gravity="center">
 
+
         <Button
             android:id="@+id/closeBtn"
             android:layout_width="126dp"
