@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // 비밀번호 틀렸을 시 뜨는 Dialog
-    fun showDialog(){
+    private fun showDialog(){
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         builder.setTitle("경고")

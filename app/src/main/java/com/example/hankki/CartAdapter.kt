@@ -102,7 +102,7 @@ class CartAdapter : BaseAdapter {
     }
 
     // 장바구니에서 +/- 눌렀을 때 DB내용과 Text 내용이 변하는 함수
-    fun change(view : View, menu : Cart, option : String) {
+    private fun change(view : View, menu : Cart, option : String) {
         val helper = CartDBHelper(this.ctx!!)
         val cartDB = helper.writableDatabase
         var values : ContentValues = ContentValues()
@@ -168,7 +168,7 @@ class CartAdapter : BaseAdapter {
     }
 
     // 삭제 버튼 눌렀을 때 DB내용과 TextView 지우는 함수
-    fun delete(view : View, menu : Cart) {
+    private fun delete(view : View, menu : Cart) {
         val helper = CartDBHelper(this.ctx!!)
         val cartDB = helper.writableDatabase
 

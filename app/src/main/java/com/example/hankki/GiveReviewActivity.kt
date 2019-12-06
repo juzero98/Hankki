@@ -35,7 +35,7 @@ class GiveReviewActivity : AppCompatActivity() {
     }
 
     // swipe 했을 시 새로 고침되는 함수
-    fun afterWrite(){
+    private fun afterWrite(){
         readOrderMenuData.clear()
         readOrderMenu(userId)
     }
@@ -59,7 +59,7 @@ class GiveReviewActivity : AppCompatActivity() {
     }
 
     // GridView에 inflate 하기
-    fun upload() {
+    private fun upload() {
         val mGrid = grid
         val mAdapter = GiveReviewAdapter(this, readOrderMenuData)
         mGrid.adapter = mAdapter
