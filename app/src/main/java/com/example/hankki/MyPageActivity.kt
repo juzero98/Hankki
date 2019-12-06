@@ -14,6 +14,8 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_mypage.*
 
+data class MyPage(var menu: String, var star: Float, var review: String)
+
 class MyPageActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     //    private val userData = ArrayList<User>()

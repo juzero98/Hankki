@@ -2,7 +2,6 @@ package com.example.hankki
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_cart.view.*
 import kotlinx.android.synthetic.main.list_cart.view.*
 import java.util.ArrayList
 
+// CartActivity의 ListView에 inflate해주는 Adapter
 class CartAdapter : BaseAdapter {
     private val db = FirebaseFirestore.getInstance()
     private val ctx: Context?
@@ -22,7 +21,6 @@ class CartAdapter : BaseAdapter {
 
     private var price = 0
     private var amount = 0
-    /*private var totalPrice = 0*/
     private var totalPriceOfMenu = 0
 
     constructor(_ctx: Context?, _data: ArrayList<Cart>) {
@@ -87,14 +85,15 @@ class CartAdapter : BaseAdapter {
         amountView.text = m.amount.toString()
         numView.text = m.amount.toString()
 
+        // - 버튼 클릭 시
         view.minusBtn.setOnClickListener {
             change(view, m, "minus");
         }
-
+        // + 버튼 클릭 시
         view.plusBtn.setOnClickListener {
             change(view, m, "plus");
         }
-
+        // 삭제 버튼 클릭 시
         view.deleteBtn.setOnClickListener {
             delete(view, m)
         }
@@ -119,10 +118,6 @@ class CartAdapter : BaseAdapter {
                 amount = cur.getInt(amount_col)
             }
         }
-
-        /*// 원래 총 가격 구하기
-        totalPriceOfMenu = price!! * amount!!
-        (ctx as CartActivity).setTotalPrice(ctx.getTotalPrice() + totalPrice)*/
 
         // - 버튼 눌렸을 때
         if(option == "minus") {

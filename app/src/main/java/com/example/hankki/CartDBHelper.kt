@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+// SQLite를 사용하여 장바구니 내용 저장
 class CartDBHelper : SQLiteOpenHelper {
     constructor(context: Context) : super(context, "cart.db", null, 1)
 

@@ -3,7 +3,6 @@ package com.example.hankki
 import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,15 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
 
+// 메뉴에서 각 메뉴를 눌렀을 때 자세한 정보 뜨는 Activity
 class DetailActivity : AppCompatActivity() {
     var price = 0
     var amount = 0
     var totalPrice = 0
     private val projection = arrayOf("name", "price", "amount")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-
 
         val intent = intent
         val img = intent.extras!!.getString("img")
@@ -67,8 +67,9 @@ class DetailActivity : AppCompatActivity() {
             val helper = CartDBHelper(this)
             val db = helper.writableDatabase
 
-
             val cur = db.query("cart", projection, "name=?", Array<String>(1){name!!}, null, null, null)
+
+            // 장바구니에 이미 담긴 메뉴일 때
             if (cur.count != 0) {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("이미 담긴 메뉴")
@@ -77,6 +78,8 @@ class DetailActivity : AppCompatActivity() {
                 })
                 builder.create().show()
             }
+
+            // 장바구니에 담기지 않은 메뉴일 때
             else {
                 val value = ContentValues()
                 value.put("name", name)
@@ -91,6 +94,8 @@ class DetailActivity : AppCompatActivity() {
             helper.close()
         }
 
+
+
         // 바로 주문 버튼 클릭 이벤트
         orderBtn.setOnClickListener {
             val intent = Intent(this, OrderActivity::class.java)
@@ -98,9 +103,9 @@ class DetailActivity : AppCompatActivity() {
             intent.putExtra("price", price)
             intent.putExtra("amount", amount)
             startActivityForResult(intent, 0)
-            //startActivity(intent)
         }
     }
+
     // 상단 바에 장바구니 메뉴달기
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.action_cart, menu)

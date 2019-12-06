@@ -2,14 +2,12 @@ package com.example.hankki
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_community.*
 import kotlinx.android.synthetic.main.activity_menu.*
-import kotlinx.android.synthetic.main.activity_mypage.*
+
+data class Menu(var img: String, var name: String, var price: Int)
 
 class MenuActivity  : AppCompatActivity(), MenuFirstFragment.OnMyListener, MenuSecondFragment.OnMyListener, MenuThirdFragment.OnMyListener  {
     override fun onCreate(savedInstanceState: Bundle?){

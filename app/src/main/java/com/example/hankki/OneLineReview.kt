@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_mypage.*
 
+data class OnelineData(var menuname: String, var id: String, var review: String)
+
 class OneLineReview : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val onelineData = ArrayList<OnelineData>()

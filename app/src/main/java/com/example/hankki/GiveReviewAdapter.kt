@@ -9,21 +9,17 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.list.view.*
 
+// GiveReviewActivity GridView inflate해주는 Adapter
 class GiveReviewAdapter : BaseAdapter {
     private val ctx: Context?
     private val data: ArrayList<ReadOrderMenuData>
-  //  private val data2: ArrayList<ReadReviewData>
     private val db = FirebaseFirestore.getInstance()
-//    private val data2: ArrayList<ReviewImg>
     private var userId = "1"
 
 
-  //  constructor(_ctx: Context?, _data: ArrayList<ReadOrderMenuData>, _userId:String) {
-        constructor(_ctx: Context?, _data: ArrayList<ReadOrderMenuData>) {
+    constructor(_ctx: Context?, _data: ArrayList<ReadOrderMenuData>) {
         ctx = _ctx
         data = _data
-     //   userId = _userId
-
     }
 
     override fun getCount(): Int {
@@ -38,15 +34,11 @@ class GiveReviewAdapter : BaseAdapter {
         return null
     }
 
-
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
 
-
         val inflater = LayoutInflater.from(ctx)
         view = inflater.inflate(R.layout.list, parent, false)
-
 
         val img = view.img
         val menu = view.menu
@@ -54,11 +46,11 @@ class GiveReviewAdapter : BaseAdapter {
         val review = view.review
 
         val d1 = data[position]
-        //  val d2 = data2[position]
 
-
+        // 메뉴 이름 띄우기
         menu.text = d1.menu
 
+        // DB 'menu'에서 메뉴 이름으로 이미지 불러오기
         db.collection("menu")
             .whereEqualTo("name", d1.menu)
             .get()
@@ -71,10 +63,9 @@ class GiveReviewAdapter : BaseAdapter {
                         .into(img)
 
                 }
-
-
             }
 
+        // DB 'reviews'에서 사용자 id와 메뉴 이름으로 별점과 리뷰 불러오기
         db.collection("reviews")
             .whereEqualTo("id", d1.id)
             .whereEqualTo("menu", d1.menu)
@@ -84,12 +75,12 @@ class GiveReviewAdapter : BaseAdapter {
                     val stara = document.get("star").toString()
                     val stars = stara.toFloat()
                     val reviewa = document.get("review").toString()
-                    
+
                     review.text = reviewa
                     star.rating = stars!!
 
                 }
-             
+
 
             }
         return view
