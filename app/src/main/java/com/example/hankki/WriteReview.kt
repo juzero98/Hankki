@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.annotation.ContentView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.give_review.*
@@ -36,6 +37,8 @@ class WriteReview : AppCompatActivity() {
 
         val menu = intent.getStringExtra("menu")
 
+        menuname.setText(menu)
+
         val submit_btn = findViewById<Button>(R.id.submit)
         submit_btn.setOnClickListener {
             db.collection("reviews")
@@ -56,4 +59,5 @@ class WriteReview : AppCompatActivity() {
             finish()
         }
     }
+
 }
