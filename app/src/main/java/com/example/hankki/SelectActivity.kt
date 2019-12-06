@@ -7,6 +7,7 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_select.*
 
+// 로그인 후 4개의 카테고리 중에 선택하는 액티비티
 class SelectActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +16,8 @@ class SelectActivity : AppCompatActivity() {
 
         val id = intent.getStringExtra("id")
         val cash = intent.getStringExtra("cash")
+
+        //각 버튼을 누르면 해당 액티비티로 이동을 한다
 
         menuBtn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)

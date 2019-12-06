@@ -1,16 +1,14 @@
 package com.example.hankki
 
 import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.list_oneline.view.*
 
+// OneLineReview의 list에 평점을 inflate 해주는 어댑터
 class OneLineAdapter : BaseAdapter {
     private val ctx: Context?
     private val data: ArrayList<OnelineData>
@@ -34,7 +32,6 @@ class OneLineAdapter : BaseAdapter {
         return null
     }
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
 
@@ -49,21 +46,6 @@ class OneLineAdapter : BaseAdapter {
 
         menuName.text = m.menuname
 
-      /*  db.collection("reviews")
-            .whereEqualTo("menu", m.menuname)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val oneLineId = document.get("id").toString()
-                    val oneLineReview = document.get("review").toString()
-
-                    id.text = oneLineId
-                    review.text = oneLineReview
-
-                }
-
-
-            }*/
         review.text = m.review
         id.text = m.id
         return view

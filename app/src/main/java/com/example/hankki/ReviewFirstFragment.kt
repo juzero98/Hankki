@@ -1,24 +1,16 @@
 package com.example.hankki
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.GridView
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_menu_firstfragment.*
-import kotlinx.android.synthetic.main.fragment_menu_firstfragment.view.*
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import android.R.attr.fragment
 import android.content.Intent
 
-
+// 평점 보기에서 첫번째 탭에 해당되는 fragment
 class ReviewFirstFragment : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
     private val reviewData = ArrayList<SeeReviewData>()
@@ -31,7 +23,7 @@ class ReviewFirstFragment : DialogFragment() {
         return view
     }
 
-    //fragment에 메뉴와 평점 띄우는 함수
+    //fragment에 "면류&찌개&김밥" 메뉴와 평점 띄우는 함수
     private fun read() {
         db.collection("menu")
             .whereEqualTo("category", "면류&찌개&김밥")
@@ -42,6 +34,8 @@ class ReviewFirstFragment : DialogFragment() {
                     val name = document.get("name").toString()
                     val price = document.get("price").toString()
                     val menu = null
+
+                    //성공해야 reviewData에 SeeReviewData 데이터클래스를 add 해준다.
                     if (!readSucess) {
                         reviewData.add(SeeReviewData(img, name, price))
                     }

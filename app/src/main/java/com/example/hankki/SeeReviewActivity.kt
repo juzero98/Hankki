@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_seereview.*
 
 data class SeeReviewData(var img: String, var name: String, var price: String)
 
+// 별점보기를 누르게 되면 뜨는 액티비티
 class SeeReviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

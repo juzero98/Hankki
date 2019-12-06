@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
+// 처음 시작부분에 애니메이션 액티비티
 class SplashActivity : AppCompatActivity() {
 
     val SPLASH_TIME_OUT: Long = 2500
