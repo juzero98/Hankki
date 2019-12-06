@@ -2,30 +2,27 @@ package com.example.hankki
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_menu_firstfragment.*
 import kotlinx.android.synthetic.main.fragment_menu_firstfragment.grid
-import kotlinx.android.synthetic.main.fragment_menu_secondfragment.*
 
+// "덮밥류&비빔밥" 카테고리의 Fragment
 class MenuSecondFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val menuData = ArrayList<Menu>()
+    // 중복 띄우기 방지, 한 번 읽으면 true로 변경
     private var readSucess = false
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_menu_firstfragment, container, false)!!
         read()
         return view
     }
 
+    // DB에서 "덮밥류&비빔밥" 카테고리의 메뉴 불러오기
+    // 불러온 data를 menuData에 Menu형으로 저장
     private fun read() {
         db.collection("menu")
             .whereEqualTo("category", "덮밥류&비빔밥")
@@ -45,20 +42,22 @@ class MenuSecondFragment : Fragment() {
 
 
             }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents: ", exception)
+            .addOnFailureListener {
             }
     }
 
+    // menuData에 저장된 내용 Adapter로 inflate
     private fun upload() {
         val mGrid = grid
         val mAdapter = MenuAdapter(this.activity, menuData)
         mGrid.adapter = mAdapter
+        // 각 메뉴별 클릭 시 이벤트 달기
         mGrid.setOnItemClickListener { parent, view, position, id ->
             showDetail(menuData[position].name)
         }
     }
 
+    // 각 메뉴 클릭 시 부모 액티비티인 MenuActivity의 onReceivedData 함수 실행
     private fun showDetail(name: String?) {
         db.collection("menu")
             .whereEqualTo("name", name)
@@ -75,8 +74,7 @@ class MenuSecondFragment : Fragment() {
                 }
 
             }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents: ", exception)
+            .addOnFailureListener {
             }
     }
 

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.list_menu.view.*
 import java.util.ArrayList
 
+// 각 MenuFragment마다 GridView에 inflate해주는 Adapter
 class MenuAdapter : BaseAdapter {
     private val ctx: Context?
     private val data: ArrayList<Menu>
@@ -42,6 +43,7 @@ class MenuAdapter : BaseAdapter {
 
         val m = data[position]
 
+        // 이미지 띄워주기
         Glide.with(view)
             .load(m.img)
             .into(image)

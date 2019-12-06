@@ -11,6 +11,9 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
 
+// 글의 titleId를 담은 data를 나타내는 class
+data class MyCommunity(var titleId: String)
+
 // 커뮤니티 Activity
 class CommunityActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
@@ -48,13 +51,13 @@ class CommunityActivity : AppCompatActivity() {
     }
 
     // swipe 했을 시 새로 고침되는 함수
-    fun afterWrite(){
+    private fun afterWrite(){
         commuData.clear()
         readFirestore()
     }
 
     // DB 'board'에서 모든 글 불러오기
-    fun readFirestore(){
+    private fun readFirestore(){
         db.collection("board")
             .orderBy("count")
             .addSnapshotListener{snapshots, e ->
@@ -76,7 +79,7 @@ class CommunityActivity : AppCompatActivity() {
     }
 
     // GridView에 inflate 하기
-    fun upload(){
+    private fun upload(){
         val mGrid = grid
         // 저장된 글 역순으로 띄우기
         val reversedCommuData = commuData.reversed() as MutableList<MyCommunity>
@@ -91,7 +94,7 @@ class CommunityActivity : AppCompatActivity() {
     }
 
     // 글 눌렀을 때 해당 글에 대한 Dialog 띄우기
-    fun showDialog(titleId:String?){
+    private fun showDialog(titleId:String?){
             val builder = AlertDialog.Builder(this)
             val inflater = layoutInflater
             builder.setTitle("글 보기")

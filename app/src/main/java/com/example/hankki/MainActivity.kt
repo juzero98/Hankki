@@ -40,13 +40,17 @@ class MainActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("user", 0)
         val id : String = prefs.getString("id","").toString()
 
+
+        // 주문한 음식이 완성되면 알림 띄우기
+        // finish 필드로 음식이 완성됐는지 안됐는지 확인
+        // finish : 기본값은 false, 음식이 완료되면 true로 변경
         db.collection("orders")
             .whereEqualTo("id", id)
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     return@addSnapshotListener
                 }
-
+                // DB 'orders'의 내용이 변경되면 바로 알림 띄우는 함수 실행
                 for (dc in snapshots!!.documentChanges) {
                     when (dc.type) {
                         DocumentChange.Type.MODIFIED -> {
@@ -57,7 +61,9 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    fun notify(finish : Boolean, orderedMenu:String , orderedNum:String) {
+    // 음식이 완성되면 알림 띄우기
+    private fun notify(finish : Boolean, orderedMenu:String , orderedNum:String) {
+        // finish가 true면 (관리자 어플에서 완료 버튼을 눌렀을 시)
         if(finish) {
             val notificationManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             if( android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -73,6 +79,7 @@ class MainActivity : AppCompatActivity() {
             var pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
             val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
+            // 주문 번호와 주문한 메뉴 이름 넣어서 알림 띄우기
             var notificationBuilder = NotificationCompat.Builder(this, "음식완성")
                 .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher_new))
                 .setSmallIcon(R.mipmap.ic_launcher_new)
