@@ -65,7 +65,7 @@ class GiveReviewActivity : AppCompatActivity() {
         mGrid.adapter = mAdapter
         // 각 메뉴 눌렀을 시 별점과 리뷰 주는 activity 띄우기
         mGrid.setOnItemClickListener{ parent, view, position, id ->
-            val intent = Intent(this, WriteReviewActivity::class.java)
+            val intent = Intent(this, WriteReview::class.java)
             intent.putExtra("menu",readOrderMenuData[position].menu)
             startActivity(intent)
         }
