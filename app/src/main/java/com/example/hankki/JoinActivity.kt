@@ -17,6 +17,8 @@ class JoinActivity : AppCompatActivity() {
             val pw: String = userPw.text.toString()
             val user = User(name, id, pw, 0)
             db.collection("users").document(name).set(user)
+
+            finish()
         }
 
 
