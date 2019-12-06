@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
             val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
             var notificationBuilder = NotificationCompat.Builder(this, "음식완성")
-                .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher_new))
+                .setSmallIcon(R.mipmap.ic_launcher_new)
                 .setContentTitle("음식 완성")
                 .setContentText(orderedNum + "번 손님! " + orderedMenu + " 음식을 수령해주세요")
                 .setAutoCancel(true)
