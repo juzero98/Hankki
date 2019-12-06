@@ -1,29 +1,28 @@
 package com.example.hankki
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_order.*
 
 data class Order (var orderNum : Int, var id : String, var menu : String, var finish : Boolean, var amount : Int)
 
+//주문할 때 뜨는 액티비티
 class OrderActivity : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     val menus = arrayListOf<String>()
     val amounts = arrayListOf<Int>()
     var tp = 0
     var myCash = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
         getAll()
-
-
     }
-    fun getAll() {
+
+    private fun getAll() {
         val helper = CartDBHelper(this)
         val cartDB = helper.writableDatabase
         val projection = arrayOf("name", "price", "amount")
@@ -70,7 +69,7 @@ class OrderActivity : AppCompatActivity() {
         getMyCash()
     }
     // 내 잔액 불러오는 함수
-    fun getMyCash() {
+    private fun getMyCash() {
         val prefs = getSharedPreferences("user", 0)
         val id : String = prefs.getString("id","").toString()
         db.collection("users")
@@ -86,7 +85,7 @@ class OrderActivity : AppCompatActivity() {
         setListener()
     }
 
-    fun setListener() {
+    private fun setListener() {
         yesBtn.setOnClickListener {
             val intent = Intent(this, WaitingActivity::class.java)
             intent.putExtra("menus", menus)

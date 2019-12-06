@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_review_firstfragment.view.*
 import kotlinx.android.synthetic.main.list_review.view.*
 import java.util.ArrayList
 
+// SeeReviewActivity의 각 fragment에 inflate해주는 adapter
 class ReviewAdapter : BaseAdapter {
     private val ctx: Context?
     private val data: ArrayList<SeeReviewData>
@@ -59,7 +59,7 @@ class ReviewAdapter : BaseAdapter {
 
         name.text = m.name
 
-
+        //reviews 컬렉션에서 각 name과 같은 menu 필드를 get
         db.collection("reviews")
             .whereEqualTo("menu", m.name)
             .get()
@@ -68,6 +68,7 @@ class ReviewAdapter : BaseAdapter {
                     val stara = document.get("star").toString()
                     val stars = stara.toFloat()
 
+                    //별점 평균 계산하는 코드
                     sum += stars
                     i++
                     avg = sum/i

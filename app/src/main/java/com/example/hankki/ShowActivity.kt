@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 
+// 학식당 상세 정보 보여주는 액티비티
 class ShowActivity: AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {

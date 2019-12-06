@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_mypage.*
 
 data class OnelineData(var menuname: String, var id: String, var review: String)
 
+//SeeReviewActivity의 각 fragment의 메뉴들을 눌렀을 때 한줄평을 띄워주는 액티비티
+
 class OneLineReview : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val onelineData = ArrayList<OnelineData>()
@@ -17,10 +19,10 @@ class OneLineReview : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.oneline_review)
         readReview()
-
     }
 
-    fun readReview() {
+    //firestore에서 menu 컬렉션을 가져와서 menu 이름이 같은 애들을 가져온다
+    private fun readReview() {
         val menu = intent.getStringExtra("menu")
         db.collection("reviews")
             .whereEqualTo("menu", menu)
@@ -48,7 +50,7 @@ class OneLineReview : AppCompatActivity() {
         }
     }
 
-
+    // 리뷰들을 리스트에 넣어준다
     fun upload() {
         val mGrid = grid
         val mAdapter = OneLineAdapter(this, onelineData)
