@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.community_list.view.*
 
+// CommunityActivity GridView에 inflate해주는 Adapter
 class CommunityAdapter : BaseAdapter {
-
-    private val db = FirebaseFirestore.getInstance()
     private val ctx: Context?
     private var data = mutableListOf<MyCommunity>()
 
@@ -41,8 +38,6 @@ class CommunityAdapter : BaseAdapter {
         val titleId = view.titleId
         val m = data[position]
         titleId.text = m.titleId
-
-
 
         return view
     }

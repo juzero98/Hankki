@@ -1,15 +1,15 @@
 package com.example.hankki
 
-import android.content.Context
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_cart.*
 
+// 장바구니에 들어갈 data를 나타내는 class
+data class Cart(val name: String, val price: Int, val amount: Int)
+
+// 장바구니 Activity
 class CartActivity : AppCompatActivity() {
     private val projection = arrayOf("name", "price", "amount")
     private val cartData = ArrayList<Cart>()
@@ -29,7 +29,6 @@ class CartActivity : AppCompatActivity() {
         orderBtn.setOnClickListener {
             val intent = Intent(this, OrderActivity::class.java)
             startActivityForResult(intent, 0)
-            //startActivity(intent)
         }
 
         swipe.setOnRefreshListener {
@@ -38,22 +37,17 @@ class CartActivity : AppCompatActivity() {
         }
     }
 
+    // 장바구니 내용 새로고침
     public fun afterIn(){
         cartData.clear()
         val helper = CartDBHelper(this)
         read(helper)
-        /*mListView = listView
-        val mAdapter = CartAdapter(this, cartData)
-        mListView?.adapter = mAdapter
-        mAdapter.notifyDataSetChanged()*/
     }
 
+    // 목록 삭제 시 새로고침
     public fun delete() {
-        cartData.clear()
-        val helper = CartDBHelper(this)
-        read(helper)
+        afterIn()
     }
-
 
     // SQLite에서 장바구니(Cart 테이블)에 담긴 목록 불러 와서 ArrayList에 저장
     private fun read(helper: CartDBHelper) {
@@ -76,6 +70,7 @@ class CartActivity : AppCompatActivity() {
         upload()
     }
 
+    // ListView에 inflate
     private fun upload() {
         mListView = listView
         val mAdapter = CartAdapter(this, cartData)
@@ -89,28 +84,8 @@ class CartActivity : AppCompatActivity() {
         mListView?.deferNotifyDataSetChanged()
     }
 
+    // 장바구니 총 금액 반환
     public fun getTotalPrice() : Int {
         return totalPrice
     }
-    /*override public fun onResume() {
-        super.onResume()
-
-    }*/
-
-   /* // 상단 바에 장바구니 메뉴달기
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.action_cart, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.action_cart -> {
-                val intent = Intent(this, CartActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-            else -> {return super.onOptionsItemSelected(item)}
-        }
-    }*/
 }

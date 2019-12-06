@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_order.*
 
+data class Order (var orderNum : Int, var id : String, var menu : String, var finish : Boolean, var amount : Int)
+
 class OrderActivity : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     val menus = arrayListOf<String>()

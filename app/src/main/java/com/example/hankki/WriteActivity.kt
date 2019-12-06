@@ -15,6 +15,8 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.Menu
 import android.view.MenuItem
 
+data class Board(var content: String, var id: String, var title:String, var count:Int = 0)
+
 class WriteActivity : AppCompatActivity() {
 
 

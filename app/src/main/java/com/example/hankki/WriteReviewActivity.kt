@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.give_review.*
 
 
-class WriteReview : AppCompatActivity() {
+class WriteReviewActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     //    private val writeReview = ArrayList<ReviewData>()
     var starNum = 0.0

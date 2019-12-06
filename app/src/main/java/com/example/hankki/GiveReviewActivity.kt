@@ -3,35 +3,29 @@ package com.example.hankki
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community.*
-import kotlinx.android.synthetic.main.activity_mypage.*
 import kotlinx.android.synthetic.main.activity_mypage.grid
 
+// 리뷰와 별점을 주기 위해 사용자가 먹은 메뉴를 띄워주는 Activity
 class GiveReviewActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val readOrderMenuData = ArrayList<ReadOrderMenuData>()
-    //  private val readReviewData = ArrayList<ReadReviewData>()
-    private var readSucess = false
     private val datas = arrayOfNulls<String>(3)
-
+    private var userId : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_givereview)
 
         val prefs = getSharedPreferences("user", 0)
-        var userId = prefs.getString("id", "")
+        userId = prefs.getString("id", "")!!
+
         readOrderMenu(userId)
 
-
+        // swipe 했을 시 게시판 새로 고침
         swipe.setOnRefreshListener {
             afterWrite()
 
@@ -40,50 +34,41 @@ class GiveReviewActivity : AppCompatActivity() {
 
     }
 
+    // swipe 했을 시 새로 고침되는 함수
     fun afterWrite(){
-        val userIdd = intent.getStringExtra("id")
         readOrderMenuData.clear()
-        readOrderMenu(userIdd)
+        readOrderMenu(userId)
     }
 
 
-    //orders DB에서 내가 먹은 메뉴 불러오기
+    // DB 'orders'에서 사용자가 먹은 메뉴 불러오기
     private fun readOrderMenu(userId: String?) {
-        val userIdd = intent.getStringExtra("id")
         db.collection("orders")
             .whereEqualTo("id", userId)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    datas[0] = document.get("menu").toString()//로그인한 사용자가 주문한 메뉴
-                    datas[1] = (0.0).toString()//star
-                    datas[2] = null//review
-                    //   datas[3] = //id
-                    readOrderMenuData.add(ReadOrderMenuData(datas[0],datas[1]!!.toFloat(),datas[2],userIdd))
+                    datas[0] = document.get("menu").toString()  // 사용자가 먹은 메뉴
+                    datas[1] = (0.0).toString() // 별점 -> 0.0으로 초기화
+                    datas[2] = null // review -> null로 초기화
+                    readOrderMenuData.add(ReadOrderMenuData(datas[0],datas[1]!!.toFloat(),datas[2],userId))
                 }
-
-
                 upload()
             }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents: ", exception)
-            }
+            .addOnFailureListener { }
     }
 
+    // GridView에 inflate 하기
     fun upload() {
         val mGrid = grid
-        //  val mAdapter = GiveReviewAdapter(this, readOrderMenuData,userId!!)
         val mAdapter = GiveReviewAdapter(this, readOrderMenuData)
         mGrid.adapter = mAdapter
+        // 각 메뉴 눌렀을 시 별점과 리뷰 주는 activity 띄우기
         mGrid.setOnItemClickListener{ parent, view, position, id ->
-            // uploadMenu(readOrderMenuData[position].menu)
-            val intent = Intent(this, WriteReview::class.java)
+            val intent = Intent(this, WriteReviewActivity::class.java)
             intent.putExtra("menu",readOrderMenuData[position].menu)
             startActivity(intent)
-
         }
-
-
     }
 
 

@@ -46,7 +46,7 @@
 
         <activity android:name=".GiveReviewActivity"/>
 
-        <activity android:name=".WriteReview"/>
+        <activity android:name=".WriteReviewActivity"/>
 
         <activity android:name=".OneLineReview"/>
 
