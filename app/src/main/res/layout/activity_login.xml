@@ -7,7 +7,7 @@
         android:layout_marginTop="200dp"
         android:layout_width="250dp"
         android:layout_height="110dp"
-        android:src="@drawable/hankki"
+        android:src="@drawable/login"
         android:layout_gravity="center"
         />
 
