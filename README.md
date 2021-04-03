@@ -56,8 +56,22 @@
         
 
 
-# 예시
+# 실행 화면
 
-![텀프1](https://user-images.githubusercontent.com/56016350/66817799-3e7c7000-ef77-11e9-9003-9b2b4c443a4a.png)
-![텀프2](https://user-images.githubusercontent.com/56016350/66817803-3f150680-ef77-11e9-9bfd-e68045603d07.png)
+### 시작 화면
+<img src="https://user-images.githubusercontent.com/48197531/113474242-e9555680-94a9-11eb-8207-1423edaee406.png" width="250" height="500">
 
+### 메뉴
+<img src="https://user-images.githubusercontent.com/48197531/113474252-ece8dd80-94a9-11eb-829e-31a8aad71fd6.png" width="250" height="500">
+
+### 평점
+<img src="https://user-images.githubusercontent.com/48197531/113474248-ebb7b080-94a9-11eb-94b8-5a86fac6dda6.png" width="250" height="500">
+
+### 장바구니
+<img src="https://user-images.githubusercontent.com/48197531/113474244-ea868380-94a9-11eb-90fa-ce13fd7623f6.png" width="250" height="500">
+
+### 주문하기
+<img src="https://user-images.githubusercontent.com/48197531/113474245-eb1f1a00-94a9-11eb-9d20-8b8952be68b6.png" width="250" height="500"> <img src="https://user-images.githubusercontent.com/48197531/113474247-eb1f1a00-94a9-11eb-90ff-4a7f7bef0df1.png" width="250" height="500">
+
+### 게시판
+<img src="https://user-images.githubusercontent.com/48197531/113474249-ebb7b080-94a9-11eb-9591-d973104cb14a.png" width="250" height="500"> <img src="https://user-images.githubusercontent.com/48197531/113474250-ec504700-94a9-11eb-9575-469fd93e684d.png" width="250" height="500">
